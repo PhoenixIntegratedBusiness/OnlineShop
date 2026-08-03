@@ -20,16 +20,16 @@ jobs:
         dotnet-version: '8.0.x' 
 
     - name: Restore Dependencies
-      run: dotnet restore "OnlineShop.sln" 
+      run: dotnet restore OnlineShop.sln 
 
     - name: Build Project
-      run: dotnet build "OnlineShop.sln" --configuration Release --no-restore 
+      run: dotnet build OnlineShop.sln --configuration Release --no-restore 
 
     - name: Run Tests
-      run: dotnet test "OnlineShop.sln" --configuration Release --no-build 
+      run: dotnet test OnlineShop.sln --configuration Release --no-build 
 
     - name: Publish Application
-      run: dotnet publish "OnlineShop.sln" --configuration Release --output ./publish_output 
+      run: dotnet publish OnlineShop.sln --configuration Release --output ./publish_output 
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
