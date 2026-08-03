@@ -29,7 +29,7 @@ jobs:
       run: dotnet test OnlineShop/OnlineShop.sln --configuration Release --no-build 
 
     - name: Publish Application
-      run: dotnet publish OnlineShop/Presentation/OnlineShop.Web/OnlineShop.Web.csproj --configuration Release --output ./publish_output
+      run: dotnet publish OnlineShop/OnlineShop.Web/OnlineShop.Web.csproj --configuration Release --output ./publish_output
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
