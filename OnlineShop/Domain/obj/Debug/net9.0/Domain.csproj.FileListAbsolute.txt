@@ -1,0 +1,12 @@
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\bin\Debug\net9.0\Domain.deps.json
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\bin\Debug\net9.0\Domain.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\bin\Debug\net9.0\Domain.pdb
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\obj\Debug\net9.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\obj\Debug\net9.0\Domain.AssemblyInfoInputs.cache
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\obj\Debug\net9.0\Domain.AssemblyInfo.cs
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\obj\Debug\net9.0\Domain.csproj.CoreCompileInputs.cache
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\obj\Debug\net9.0\Domain.sourcelink.json
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\obj\Debug\net9.0\Domain.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\obj\Debug\net9.0\refint\Domain.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\obj\Debug\net9.0\Domain.pdb
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Domain\obj\Debug\net9.0\ref\Domain.dll

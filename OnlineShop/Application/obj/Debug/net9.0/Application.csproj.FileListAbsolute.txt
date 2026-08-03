@@ -1,0 +1,12 @@
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\bin\Debug\net9.0\Application.deps.json
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\bin\Debug\net9.0\Application.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\bin\Debug\net9.0\Application.pdb
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\obj\Debug\net9.0\Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\obj\Debug\net9.0\Application.AssemblyInfoInputs.cache
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\obj\Debug\net9.0\Application.AssemblyInfo.cs
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\obj\Debug\net9.0\Application.csproj.CoreCompileInputs.cache
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\obj\Debug\net9.0\Application.sourcelink.json
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\obj\Debug\net9.0\Application.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\obj\Debug\net9.0\refint\Application.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\obj\Debug\net9.0\Application.pdb
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Application\obj\Debug\net9.0\ref\Application.dll

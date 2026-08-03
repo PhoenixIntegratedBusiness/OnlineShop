@@ -1,0 +1,12 @@
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\bin\Debug\net9.0\Infra.IOC.deps.json
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\bin\Debug\net9.0\Infra.IOC.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\bin\Debug\net9.0\Infra.IOC.pdb
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\obj\Debug\net9.0\Infra.IOC.GeneratedMSBuildEditorConfig.editorconfig
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\obj\Debug\net9.0\Infra.IOC.AssemblyInfoInputs.cache
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\obj\Debug\net9.0\Infra.IOC.AssemblyInfo.cs
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\obj\Debug\net9.0\Infra.IOC.csproj.CoreCompileInputs.cache
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\obj\Debug\net9.0\Infra.IOC.sourcelink.json
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\obj\Debug\net9.0\Infra.IOC.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\obj\Debug\net9.0\refint\Infra.IOC.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\obj\Debug\net9.0\Infra.IOC.pdb
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\Infra.IOC\obj\Debug\net9.0\ref\Infra.IOC.dll
