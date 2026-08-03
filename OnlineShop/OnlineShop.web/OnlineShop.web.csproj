@@ -14,8 +14,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Infra.IOC\Infra.IOC.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,32 +1,9 @@
-using Infra.Data.Context;
-using Infra.IOC;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-
 var builder = WebApplication.CreateBuilder(args);
 
-#region Services
-
+// Add services to the container.
 builder.Services.AddControllersWithViews();
 
-#region connection string config
-
-builder.Services.AddDbContext<MyContext>(option =>
-{
-    option.UseSqlServer(builder.Configuration.GetConnectionString("OnlineShopConnection"));
-});
-#endregion
-
-#region Ioc Container services
-builder.Services.RegisterServices();
-#endregion
-
 var app = builder.Build();
-// Add services to the container.
-
-#endregion
-
-#region  Pipeline
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
@@ -50,7 +27,3 @@ app.MapControllerRoute(
 
 
 app.Run();
-
-#endregion
-
-
