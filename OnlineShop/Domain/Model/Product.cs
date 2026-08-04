@@ -29,15 +29,15 @@ namespace Domain.Model
         [Display(Name = "قیمت")]
         public int Price { get; set; }
         [Display(Name = "خلاصه")]
-        public string Summery { get; set; }
+        public string? Summery { get; set; }
 
 
         [Display(Name = "توضیحات")]
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
 
         [Display(Name = "کلمات کلیدی")]
-        public string Tags { get; set; }
+        public string? Tags { get; set; }
 
 
         public List<ProductGallery> ProductGallery { get; set; }
