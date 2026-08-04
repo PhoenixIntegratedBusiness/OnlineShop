@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "B6VrVryvLGY=",
+  "dgSpecHash": "5oNlWLhjvTM=",
   "success": true,
   "projectFilePath": "E:\\02-Learning\\Test Proj\\OnlineShop Project\\OnlineShop\\OnlineShop.web\\OnlineShop.web.csproj",
   "expectedPackageFiles": [
@@ -56,6 +56,8 @@
     "C:\\Users\\96893\\.nuget\\packages\\humanizer.core.zh-cn\\2.14.1\\humanizer.core.zh-cn.2.14.1.nupkg.sha512",
     "C:\\Users\\96893\\.nuget\\packages\\humanizer.core.zh-hans\\2.14.1\\humanizer.core.zh-hans.2.14.1.nupkg.sha512",
     "C:\\Users\\96893\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
+    "C:\\Users\\96893\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\9.0.18\\microsoft.aspnetcore.cryptography.internal.9.0.18.nupkg.sha512",
+    "C:\\Users\\96893\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\9.0.18\\microsoft.aspnetcore.cryptography.keyderivation.9.0.18.nupkg.sha512",
     "C:\\Users\\96893\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
     "C:\\Users\\96893\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\96893\\.nuget\\packages\\microsoft.build\\17.11.48\\microsoft.build.17.11.48.nupkg.sha512",
@@ -92,6 +94,7 @@
     "C:\\Users\\96893\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\9.0.18\\microsoft.extensions.dependencyinjection.9.0.18.nupkg.sha512",
     "C:\\Users\\96893\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\9.0.18\\microsoft.extensions.dependencyinjection.abstractions.9.0.18.nupkg.sha512",
     "C:\\Users\\96893\\.nuget\\packages\\microsoft.extensions.dependencymodel\\9.0.18\\microsoft.extensions.dependencymodel.9.0.18.nupkg.sha512",
+    "C:\\Users\\96893\\.nuget\\packages\\microsoft.extensions.identity.core\\9.0.18\\microsoft.extensions.identity.core.9.0.18.nupkg.sha512",
     "C:\\Users\\96893\\.nuget\\packages\\microsoft.extensions.logging\\9.0.18\\microsoft.extensions.logging.9.0.18.nupkg.sha512",
     "C:\\Users\\96893\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\9.0.18\\microsoft.extensions.logging.abstractions.9.0.18.nupkg.sha512",
     "C:\\Users\\96893\\.nuget\\packages\\microsoft.extensions.options\\9.0.18\\microsoft.extensions.options.9.0.18.nupkg.sha512",

@@ -1,4 +1,5 @@
 ﻿using Domain.Model;
+using Domain.ViewModel.AccountViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,8 @@ namespace Domain.Interfaces
     {
        
         Task<List<Users>> GetUsersAsync();
+        Task<Users?> GetUserByEmailAsync(string email);
+        Task AddUserAsync(Users user);
+        Task SaveChangeAsync();
     }
 }

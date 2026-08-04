@@ -10,6 +10,7 @@
 <p>
     <a asp-action="Create" class="btn-success">Create New User</a>
 </p>
+
 <table class="table">
     <thead>
         <tr>
@@ -34,9 +35,9 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
             @foreach (var item in Model)
             {
+              <tr> 
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Username)
@@ -60,7 +61,7 @@
                     <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-info">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-danger">Delete</a>
                 </td>
+            </tr>
             }
-        </tr>
     </tbody>
 </table>

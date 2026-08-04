@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace Application.Services.Implementation
 {
@@ -22,6 +23,7 @@ namespace Application.Services.Implementation
         }
 
 
+        #region GetUsersAsync  
         public async Task<List<UserViewModel>> GetUsersAsync()
         {
             var list = await _userRepository.GetUsersAsync();
@@ -33,12 +35,45 @@ namespace Application.Services.Implementation
                 IsAdmin = u.IsAdmin,
                 Email = u.Email,
                 Mobile = u.Mobile,
-                CreateDate=u.CreateDate,
-                isDelete=u.isDelete
+                CreateDate = u.CreateDate,
+                isDelete = u.isDelete
 
             }).ToList();
 
             return users;
         }
+        #endregion
+
+
+
+        #region RegisterUserAsync
+        public async Task<ResultRegister> RegisterUserAsync(RegisterViewModel model)
+        {
+            var existUser = await _userRepository.GetUserByEmailAsync(model.Email);
+
+            if (existUser != null)
+            {
+                return ResultRegister.EmailExists;
+            }
+
+            var user = new Users
+            {
+                Email = model.Email,
+                Username = model.UserName,
+                Mobile = model.Mobile,
+                CreateDate = DateTime.Now,
+                isDelete = false,
+                IsAdmin = false
+            };
+
+            var passwordHasher = new PasswordHasher<Users>();
+            user.Password =passwordHasher.HashPassword(user, model.Password);
+
+            await _userRepository.AddUserAsync(user);
+            await _userRepository.SaveChangeAsync();
+
+            return ResultRegister.Success;
+        }
+        #endregion
     }
 }
