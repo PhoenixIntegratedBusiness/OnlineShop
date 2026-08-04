@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Domain.ViewModel.AccountViewModel
 {
-    internal class AccountViewModel
+    public class AccountViewModel
     {
+
+
     }
 }

@@ -18,6 +18,5 @@ namespace OnlineShop.web.Areas.UserPanel.Controllers
             return View(list);
         }
 
-
     }
 }

@@ -20,13 +20,10 @@ namespace Domain.ViewModel.AccountViewModel
 
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Mobile { get; set; }
-
        
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public bool IsAdmin { get; set; }
-
         public DateTime CreateDate { get; set; }
-
         public bool isDelete { get; set; }
 
     }
