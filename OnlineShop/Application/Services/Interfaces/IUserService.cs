@@ -17,7 +17,11 @@ namespace Application.Services.Interfaces
         Task<LoginResult> LoginUserAsync(LoginViewModel model);
 
         Task<Users?> GetUserByEmailAsync(string email);
-      
+        Task<ForgetPassResult> ForgetPasswordAsync(ForgetPasswordViewModel model);
+
+        Task<ResetPasswordResult> CheckActiveCodeAsync(ResetPasswordViewModel model);
+
+
     }
 
    

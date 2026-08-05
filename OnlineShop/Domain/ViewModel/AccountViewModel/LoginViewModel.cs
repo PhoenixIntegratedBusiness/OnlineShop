@@ -21,8 +21,6 @@ namespace Domain.ViewModel.AccountViewModel
         [DataType(DataType.Password)]
         [Compare("Password", ErrorMessage = "Password and Confirm Password do not match.")]
         public required string RePassword { get; set; }
-
-
         public bool RememberMe { get; set; }
     }
 
