@@ -10,6 +10,7 @@ E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Azure.Core.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Azure.Identity.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Humanizer.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.AspNet.Identity.Core.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.Internal.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.AspNetCore.Razor.Language.dll
@@ -286,8 +287,8 @@ E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\compressed\95jhbrfc4i-pkts7es85v.gz
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\compressed\a21pzsb59x-t7aoqleyiw.gz
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\compressed\88bf1oikgi-7jn05mlqzz.gz
-E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\compressed\qw2zdo52cv-b9sayid5wm.gz
-E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\compressed\x135oaspzw-d6fib3rqjl.gz
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\compressed\qw2zdo52cv-bec6tygk3k.gz
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\compressed\x135oaspzw-6jhf7l239y.gz
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\compressed\vcfik41r0x-i021en4tkg.gz
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\compressed\qvibaqlo3d-81c8p4mxph.gz
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\compressed\tu3lpy744w-5uftusuoq9.gz

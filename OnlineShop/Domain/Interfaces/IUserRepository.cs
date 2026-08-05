@@ -10,10 +10,9 @@ namespace Domain.Interfaces
 {
     public interface IUserRepository
     {
-       
         Task<List<Users>> GetUsersAsync();
         Task<Users?> GetUserByEmailAsync(string email);
         Task AddUserAsync(Users user);
-        Task SaveChangeAsync();
+        Task SaveChangeAsync(); 
     }
 }

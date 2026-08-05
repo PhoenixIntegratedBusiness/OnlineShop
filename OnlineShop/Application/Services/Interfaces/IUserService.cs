@@ -13,6 +13,10 @@ namespace Application.Services.Interfaces
         Task<List<UserViewModel>> GetUsersAsync();
       
         Task<ResultRegister> RegisterUserAsync(RegisterViewModel model);
+
+        Task<LoginResult> LoginUserAsync(LoginViewModel model);
+
+        Task<Users?> GetUserByEmailAsync(string email);
       
     }
 

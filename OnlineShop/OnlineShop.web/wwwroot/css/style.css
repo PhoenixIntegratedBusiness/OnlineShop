@@ -25,7 +25,11 @@
     transition: 0.5s;
     z-index: 99;
 }
+
+
 /*** Spinner End ***/
+
+
 
 
 /*** Button Start ***/
@@ -125,7 +129,7 @@
 
 .navbar {
     height: 100px;
-    border-bottom: 1px solid rgba(255, 255, 255, .1);
+    border-bottom: 1px  rgba(255, 255, 255, .1);
 }
 
 .navbar .navbar-nav .nav-link:hover,
@@ -203,7 +207,7 @@
     height: 48px;
     border-radius: 48px;
     border: 1px solid var(--bs-white);
-    background: var(--bs-primary);
+   background: var(--bs-primary);
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -445,18 +449,3 @@
 
 
 /*** Footer Start ***/
-.footer .footer-item .btn-link {
-    line-height: 35px;
-    color: rgba(255, 255, 255, .5);
-    transition: 0.5s;
-}
-
-.footer .footer-item .btn-link:hover {
-    color: var(--bs-secondary) !important;
-}
-
-.footer .footer-item p.mb-4 {
-    line-height: 35px;
-}
-/*** Footer End ***/
-
