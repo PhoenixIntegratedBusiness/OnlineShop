@@ -1,5 +1,6 @@
 using Infra.Data.Context;
 using Infra.IOC;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 
@@ -21,6 +22,18 @@ builder.Services.AddDbContext<MyContext>(option =>
 builder.Services.RegisterServices();
 #endregion
 
+#region Authentication
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(Options =>
+    {
+        Options.ExpireTimeSpan = TimeSpan.FromDays(30);
+        Options.LoginPath = "/Login";
+        Options.LogoutPath = "/Logout";
+    }
+   );
+
+#endregion
+
 var app = builder.Build();
 // Add services to the container.
 
@@ -39,6 +52,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

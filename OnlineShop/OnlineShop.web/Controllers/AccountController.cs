@@ -1,8 +1,14 @@
 ﻿using Application.Services.Implementation;
 using Application.Services.Interfaces;
 using Domain.ViewModel.AccountViewModel;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq.Expressions;
+using System.Security.Claims;
 
 namespace OnlineShop.web.Controllers
 {
@@ -24,16 +30,14 @@ namespace OnlineShop.web.Controllers
             if (ModelState.IsValid)
             {
                 var res = await userService.RegisterUserAsync(model);
-
-
                 switch (res)
                 {
                     case ResultRegister.Success:
                         return RedirectToAction("UserList", "User", new { area = "UserPanel" });
-                        
+
                     case ResultRegister.Failed:
                         return View(model);
-                       
+
                     case ResultRegister.EmailExists:
                         ModelState.AddModelError("Email", "Email is duplicate");
                         return View(model);
@@ -45,5 +49,67 @@ namespace OnlineShop.web.Controllers
         }
 
         #endregion
+
+        #region Login
+
+        [Route("Login")]
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> Login(LoginViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = await userService.GetUserByEmailAsync(model.Email);
+            var res = await userService.LoginUserAsync(model);
+            switch (res)
+            {
+                case LoginResult.Success:
+                    List<Claim> claims = new List<Claim>()
+                    {
+                        new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
+                        new Claim(ClaimTypes.Name,user.Username),
+                        new Claim(ClaimTypes.Email,user.Email),
+                        new Claim("IsAdmin",user.IsAdmin.ToString()),
+                    };
+
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var claimsPrincipal = new ClaimsPrincipal(identity);
+                    AuthenticationProperties properties = new AuthenticationProperties()
+                    {
+                        IsPersistent = model.RememberMe,
+                    };
+                    await HttpContext.SignInAsync(claimsPrincipal, properties);
+                    return Redirect("/");
+
+                case LoginResult.UserNotFound:
+                    ModelState.AddModelError("Email", "User Not Found");
+                    return View(model);
+
+                case LoginResult.Failure:
+                    ModelState.AddModelError("Email", "wrong data entry");
+                    return View(model);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        #endregion
+
+        #region LogOut
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction(nameof(Login));
+        }
+
+        #endregion
     }
+
+
+
 }

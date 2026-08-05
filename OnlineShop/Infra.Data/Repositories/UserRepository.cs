@@ -22,8 +22,8 @@ namespace Infra.Data.Repositories
         #region GetUserByEmailAsync
         public async Task<Users?> GetUserByEmailAsync(string email)
         {
-            var user = await _Context.Users.FirstOrDefaultAsync(u => u.Email == email);
-            return user;
+            return await _Context.Users.FirstOrDefaultAsync(u => u.Email == email && u.isDelete==false);
+            
         }
         #endregion
 
