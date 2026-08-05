@@ -60,7 +60,11 @@
             },
             "Microsoft.Extensions.Identity.Core": {
               "target": "Package",
-              "version": "[9.0.18, )"
+              "version": "[10.0.10, )"
+            },
+            "NWebsec.AspNetCore.Core": {
+              "target": "Package",
+              "version": "[3.0.1, )"
             }
           },
           "imports": [

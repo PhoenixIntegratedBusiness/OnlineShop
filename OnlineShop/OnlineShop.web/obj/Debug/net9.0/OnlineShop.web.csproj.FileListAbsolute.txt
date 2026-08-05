@@ -42,14 +42,19 @@ E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Caching.Abstractions.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Caching.Memory.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Binder.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.DependencyModel.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Diagnostics.Abstractions.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Identity.Core.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Logging.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Logging.Abstractions.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Options.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Options.ConfigurationExtensions.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Identity.Client.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\Microsoft.Identity.Client.Extensions.Msal.dll
@@ -80,6 +85,7 @@ E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\NuGet.ProjectModel.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\NuGet.Protocol.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\NuGet.Versioning.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\NWebsec.AspNetCore.Core.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\System.ClientModel.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\System.CodeDom.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\System.Composition.AttributedModel.dll
@@ -88,6 +94,7 @@ E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\System.Composition.Runtime.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\System.Composition.TypedParts.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\System.Configuration.ConfigurationManager.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\System.Diagnostics.DiagnosticSource.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\System.Formats.Asn1.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\System.Memory.Data.dll

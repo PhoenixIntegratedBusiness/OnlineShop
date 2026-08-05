@@ -22,8 +22,8 @@ namespace Infra.Data.Repositories
         #region GetUserByEmailAsync
         public async Task<Users?> GetUserByEmailAsync(string email)
         {
-            return await _Context.Users.FirstOrDefaultAsync(u => u.Email == email && u.isDelete==false);
-            
+            return await _Context.Users.FirstOrDefaultAsync(u => u.Email == email && u.isDelete == false);
+
         }
         #endregion
 
@@ -38,7 +38,7 @@ namespace Infra.Data.Repositories
         #region AddUserAsync
         public async Task AddUserAsync(Users user)
         {
-           await _Context.Users.AddAsync(user);
+            await _Context.Users.AddAsync(user);
         }
         #endregion
 
@@ -46,6 +46,20 @@ namespace Infra.Data.Repositories
         public async Task SaveChangeAsync()
         {
             await _Context.SaveChangesAsync();
+        }
+        #endregion
+
+        #region UserUpdate
+        public void UserUpdate(Users user)
+        {
+            _Context.Users.Update(user);
+        }
+        #endregion
+
+        #region CheckActiveCodeAsync
+        public async Task<Users?> CheckActiveCodeAsync(string email, string activecode)
+        {
+            return await _Context.Users.FirstOrDefaultAsync(u=>u.ActiveCode== activecode && u.Email== email && u.isDelete==false);
         }
         #endregion
 

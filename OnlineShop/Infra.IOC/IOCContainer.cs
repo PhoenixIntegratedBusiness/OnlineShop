@@ -1,7 +1,9 @@
 ﻿using Application.Services.Implementation;
 using Application.Services.Interfaces;
 using Domain.Interfaces;
+using Domain.Model;
 using Infra.Data.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Identity.Client.Extensibility;
 using System;
@@ -19,7 +21,8 @@ namespace Infra.IOC
             #region Service Registration
 
             services.AddScoped<IUserService, UserService>();
-
+            services.AddScoped<IEmailSender, EmailSender>();
+            services.AddScoped<IPasswordHasher<Users>, PasswordHasher<Users>>();
             #endregion
 
             #region Repository Registration
