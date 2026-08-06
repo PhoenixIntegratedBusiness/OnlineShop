@@ -16,7 +16,7 @@ namespace Domain.Interfaces
         Task AddUserAsync(Users user);
         Task SaveChangeAsync();
         void UserUpdate(Users user);
-
         Task<Users?> CheckActiveCodeAsync(string email,string activecode);
+        Task<Users?> GetUserByIdAsync(int id);
     }
 }

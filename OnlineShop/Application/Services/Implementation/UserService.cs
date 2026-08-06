@@ -25,12 +25,47 @@ namespace Application.Services.Implementation
             _passwordHasher = passwordHasher;
         }
 
+        public async Task<ChangePassResult> ChangePasswordAsync(ChangePasswordViewModel model, int UserId)
+        {
+            var user = await _userRepository.GetUserByIdAsync(UserId);
+            if (user == null)
+            {
+                return ChangePassResult.Unauthorized;
+            }
+            var passverification = _passwordHasher.VerifyHashedPassword(user, user.Password, model.CurrentPassword);
+            switch (passverification)
+            {
+                case PasswordVerificationResult.Failed:
+                    return ChangePassResult.WrongCurrentPass;
+                case PasswordVerificationResult.Success:
+                    if (model.NewPassword == model.ReNewPassword)
+                    {
+                        user.Password = _passwordHasher.HashPassword(user, model.NewPassword);
+                        _userRepository.UserUpdate(user);
+                        await _userRepository.SaveChangeAsync();
+                        return ChangePassResult.Success;
+                    }
+                    else
+                    {
+                        return ChangePassResult.NewPassNotMaching;
+                    }
+
+                case PasswordVerificationResult.SuccessRehashNeeded:
+                    _passwordHasher.HashPassword(user, model.NewPassword);
+                    _userRepository.UserUpdate(user);
+                    await _userRepository.SaveChangeAsync();
+                    return ChangePassResult.Success;
+            }
+
+            return ChangePassResult.Failure;
+        }
+
         #region CheckActiveCodeAsync
         public async Task<ResetPasswordResult> CheckActiveCodeAsync(ResetPasswordViewModel model)
         {
-        
 
-            var resuser=await _userRepository.CheckActiveCodeAsync(model.Email.ToLowerInvariant().Trim(),model.ActiveCode);
+
+            var resuser = await _userRepository.CheckActiveCodeAsync(model.Email.ToLowerInvariant().Trim(), model.ActiveCode);
             if (resuser != null)
             {
                 resuser.ActiveCode = UniqCodeGenerator.GeneratUniqCode();
@@ -154,7 +189,7 @@ namespace Application.Services.Implementation
                     IsAdmin = false
                 };
 
-              
+
                 user.Password = _passwordHasher.HashPassword(user, model.Password);
 
                 await _userRepository.AddUserAsync(user);
