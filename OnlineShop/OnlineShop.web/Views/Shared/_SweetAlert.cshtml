@@ -1,0 +1,12 @@
+﻿@if (TempData["AlertMessage"] != null)
+{
+    <script>
+
+        Swal.fire({
+            icon: '@TempData["AlertType"]',
+            title: '@TempData["AlertType"]',
+            text: '@TempData["AlertMessage"]'
+        });
+
+    </script>
+}
