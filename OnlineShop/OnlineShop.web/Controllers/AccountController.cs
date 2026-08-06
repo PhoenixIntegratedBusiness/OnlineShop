@@ -1,6 +1,6 @@
-﻿using Application.Extentions;
-using Application.Services.Implementation;
+﻿using Application.Services.Implementation;
 using Application.Services.Interfaces;
+using Domain.Model;
 using Domain.ViewModel.AccountViewModel;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authentication;
@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages;
 using Microsoft.VisualStudio.Web.CodeGenerators.Mvc.Templates.BlazorIdentity.Pages.Manage;
+using OnlineShop.web.Web.Extentions;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq.Expressions;
@@ -37,13 +38,21 @@ namespace OnlineShop.web.Controllers
                 switch (res)
                 {
                     case ResultRegister.Success:
-                        return RedirectToAction("UserList", "User", new { area = "UserPanel" });
+                        //return RedirectToAction("UserList", "User", new { area = "UserPanel" });
+                        TempData["AlertType"] = SwalExtentions.Success;
+                        TempData["AlertMessage"] = "Your account has been created successfully. Please log in. ";
+                        return RedirectToAction(nameof(Login));
+
 
                     case ResultRegister.Failed:
+                        TempData["AlertType"] = SwalExtentions.Error;
+                        TempData["AlertMessage"] = "Operation faild";
                         return View(model);
 
                     case ResultRegister.EmailExists:
-                        ModelState.AddModelError("Email", "Email is duplicate");
+                        //ModelState.AddModelError("Email", "Email is duplicate");
+                        TempData["AlertType"] = SwalExtentions.Error;
+                        TempData["AlertMessage"] = "Email already exists.";
                         return View(model);
                     default:
                         break;
@@ -90,14 +99,19 @@ namespace OnlineShop.web.Controllers
                         IsPersistent = model.RememberMe,
                     };
                     await HttpContext.SignInAsync(claimsPrincipal, properties);
+                    TempData["AlertType"] = SwalExtentions.Success;
+                    TempData["AlertMessage"] = $"Welcome back Dear {user.Username}! You have successfully logged in.";
                     return Redirect("/");
 
                 case LoginResult.UserNotFound:
                     ModelState.AddModelError("Email", "User Not Found");
+                    TempData["AlertType"] = SwalExtentions.Warning;
+                    TempData["AlertMessage"] = "User Not Found";
                     return View(model);
 
                 case LoginResult.Failure:
-                    ModelState.AddModelError("Email", "wrong data entry");
+                    TempData["AlertType"] = SwalExtentions.Error;
+                    TempData["AlertMessage"] = "User Not Found";
                     return View(model);
             }
             return RedirectToAction("Index", "Home");
@@ -108,6 +122,8 @@ namespace OnlineShop.web.Controllers
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            TempData["AlertType"] = SwalExtentions.Warning;
+            TempData["AlertMessage"] = "Logged Out Successfully!Thank you for visiting Online Shop. See you again!";
             return RedirectToAction(nameof(Login));
         }
 
@@ -135,6 +151,8 @@ namespace OnlineShop.web.Controllers
                     case ForgetPassResult.Success:
                         return RedirectToAction(nameof(ResetPassword));
                     case ForgetPassResult.Failure:
+                        TempData["AlertType"] = SwalExtentions.Warning;
+                        TempData["AlertMessage"] = "User Not Found";
                         ModelState.AddModelError(nameof(ForgetPasswordViewModel.Email), "Email Not Found!");
                         break;
                 }
@@ -142,7 +160,6 @@ namespace OnlineShop.web.Controllers
             }
         }
         #endregion
-
 
         #region ResetPassword
 
@@ -164,8 +181,12 @@ namespace OnlineShop.web.Controllers
                 var result= await userService.CheckActiveCodeAsync(model);
                 switch (result) {
                     case ResetPasswordResult.Success:
+                        TempData["AlertType"] = SwalExtentions.Success;
+                        TempData["AlertMessage"] = "Your password has been reset successfully. Please log in.";
                         return RedirectToAction(nameof(Login));
                         case ResetPasswordResult.Failure:
+                        TempData["AlertType"] = SwalExtentions.Error;
+                        TempData["AlertMessage"] = "Something went wrong. Please try again.";
                         return RedirectToAction(nameof(Login));
                 }
 
