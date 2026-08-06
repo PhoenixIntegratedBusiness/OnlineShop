@@ -19,6 +19,15 @@ namespace Infra.Data.Repositories
             _Context = context;
         }
 
+
+        #region GetUserByIdAsync
+        public async Task<Users?> GetUserByIdAsync(int id)
+        {
+            return await _Context.Users.FirstOrDefaultAsync(u=>u.UserId == id);
+        }
+        #endregion
+
+
         #region GetUserByEmailAsync
         public async Task<Users?> GetUserByEmailAsync(string email)
         {
@@ -61,7 +70,7 @@ namespace Infra.Data.Repositories
         {
             return await _Context.Users.FirstOrDefaultAsync(u=>u.ActiveCode== activecode && u.Email== email && u.isDelete==false);
         }
-        #endregion
+          #endregion
 
     }
 }

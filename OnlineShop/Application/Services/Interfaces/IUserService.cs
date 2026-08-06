@@ -22,6 +22,7 @@ namespace Application.Services.Interfaces
         Task<ResetPasswordResult> CheckActiveCodeAsync(ResetPasswordViewModel model);
 
 
+        Task<ChangePassResult> ChangePasswordAsync(ChangePasswordViewModel model,int UserId);
     }
 
    
