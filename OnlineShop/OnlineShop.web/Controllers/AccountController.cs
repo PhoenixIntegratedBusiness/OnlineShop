@@ -1,8 +1,9 @@
-﻿using Application.Services.Implementation;
+﻿using Application.DTOs;
+using Application.Enums.Account;
+using Application.Services.Implementation;
 using Application.Services.Interfaces;
 using Domain.Model;
 using Domain.ViewModel.AccountViewModel;
-using Microsoft.AspNet.Identity;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -79,18 +80,27 @@ namespace OnlineShop.web.Controllers
             {
                 return View(model);
             }
-            var user = await userService.GetUserByEmailAsync(model.Email);
             var res = await userService.LoginUserAsync(model);
-            switch (res)
+
+            switch (res.Result)
             {
                 case LoginResult.Success:
                     List<Claim> claims = new List<Claim>()
                     {
-                        new Claim(ClaimTypes.NameIdentifier,user.UserId.ToString()),
-                        new Claim(ClaimTypes.Name,user.Username),
-                        new Claim(ClaimTypes.Email,user.Email),
-                        new Claim("IsAdmin",user.IsAdmin.ToString()),
+                        new Claim(ClaimTypes.NameIdentifier,res.User.UserId.ToString()),
+                        new Claim(ClaimTypes.Name,res.User.Username),
+                        new Claim(ClaimTypes.Email,res.User.Email),
+                        new Claim("IsAdmin",res.User.IsAdmin.ToString()),
+
+
                     };
+                    foreach (var userRole in res.User.userInRoles)
+                    {
+                        claims.Add(new Claim(
+                            ClaimTypes.Role,
+                            userRole.Role.RoleName
+                        ));
+                    }
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var claimsPrincipal = new ClaimsPrincipal(identity);
@@ -100,7 +110,7 @@ namespace OnlineShop.web.Controllers
                     };
                     await HttpContext.SignInAsync(claimsPrincipal, properties);
                     TempData["AlertType"] = SwalExtentions.Success;
-                    TempData["AlertMessage"] = $"Welcome back Dear {user.Username}! You have successfully logged in.";
+                    TempData["AlertMessage"] = $"Welcome back Dear {res.User.Username}! You have successfully logged in.";
                     return Redirect("/");
 
                 case LoginResult.UserNotFound:
@@ -164,7 +174,7 @@ namespace OnlineShop.web.Controllers
         #region ResetPassword
 
         [Route("Reset-Password")]
-        public  IActionResult ResetPassword()
+        public IActionResult ResetPassword()
         {
             return View();
         }
@@ -178,13 +188,14 @@ namespace OnlineShop.web.Controllers
             }
             else
             {
-                var result= await userService.CheckActiveCodeAsync(model);
-                switch (result) {
+                var result = await userService.CheckActiveCodeAsync(model);
+                switch (result)
+                {
                     case ResetPasswordResult.Success:
                         TempData["AlertType"] = SwalExtentions.Success;
                         TempData["AlertMessage"] = "Your password has been reset successfully. Please log in.";
                         return RedirectToAction(nameof(Login));
-                        case ResetPasswordResult.Failure:
+                    case ResetPasswordResult.Failure:
                         TempData["AlertType"] = SwalExtentions.Error;
                         TempData["AlertMessage"] = "Something went wrong. Please try again.";
                         return RedirectToAction(nameof(Login));
@@ -195,8 +206,15 @@ namespace OnlineShop.web.Controllers
         }
 
         #endregion
+
+        #region AccessDenied
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
+        #endregion
+
+
     }
-
-
 
 }

@@ -24,9 +24,4 @@ namespace Domain.ViewModel.AccountViewModel
         [Compare("NewPassword", ErrorMessage = "Password and Confirm Password do not match.")]
         public required string ReNewPassword { get; set; }
     }
-
-    public enum ChangePassResult
-    {
-        Success, Failure,Unauthorized,WrongCurrentPass,NewPassNotMaching
-    }
 }

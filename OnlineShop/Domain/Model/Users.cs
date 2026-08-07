@@ -9,7 +9,7 @@ namespace Domain.Model
 {
     public class Users : BaseEntity
     {
-        [Key]
+       
         public int UserId { get; set; }
 
         [Display(Name = "نام کاربری")]
@@ -30,9 +30,17 @@ namespace Domain.Model
 
         [Display(Name = "ادمین است ؟")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public bool IsAdmin {  get; set; }
+        public bool IsAdmin { get; set; }
 
         [Display(Name = "کد فعال سازی")]
         public string? ActiveCode { get; set; }
+
+
+        #region
+        public ICollection<UserInRole> userInRoles { get; set; }
+        #endregion
+
+
+
     }
 }

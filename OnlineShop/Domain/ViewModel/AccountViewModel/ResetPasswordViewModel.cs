@@ -23,8 +23,5 @@ namespace Domain.ViewModel.AccountViewModel
         public required string RePassword { get; set; }
     }
 
-    public enum ResetPasswordResult
-    {
-        Success, Failure
-    }
+
 }

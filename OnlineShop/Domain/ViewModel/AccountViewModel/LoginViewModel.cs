@@ -23,10 +23,4 @@ namespace Domain.ViewModel.AccountViewModel
         public required string RePassword { get; set; }
         public bool RememberMe { get; set; }
     }
-
-
-    public enum LoginResult
-    {
-        Success, Failure, UserNotFound
-    }
 }

@@ -1,4 +1,6 @@
-﻿using Application.Generator;
+﻿using Application.DTOs;
+using Application.Enums.Account;
+using Application.Generator;
 using Application.Services.Interfaces;
 using Domain.Interfaces;
 using Domain.Model;
@@ -138,31 +140,56 @@ namespace Application.Services.Implementation
         #endregion
 
         #region LoginUserAsync 
-        public async Task<LoginResult> LoginUserAsync(LoginViewModel model)
+        public async Task<LoginResultDto> LoginUserAsync(LoginViewModel model)
         {
 
             var existUser = await _userRepository.GetUserByEmailAsync(model.Email.Trim().ToLowerInvariant());
+
             if (existUser == null || existUser.isDelete)
             {
-                return LoginResult.UserNotFound;
+                return new LoginResultDto
+                {
+                    Result = LoginResult.UserNotFound,
+                    User = null
+                };
             }
+
+
+
             var result = _passwordHasher.VerifyHashedPassword(existUser, existUser.Password, model.Password);
 
             switch (result)
             {
                 case PasswordVerificationResult.Success:
-                    return LoginResult.Success;
+                    return  new LoginResultDto
+                    {
+                        Result = LoginResult.Success,
+                        User= existUser
+                    }; 
 
                 case PasswordVerificationResult.SuccessRehashNeeded:
                     existUser.Password = _passwordHasher.HashPassword(existUser, model.Password);
                     await _userRepository.SaveChangeAsync();
-                    return LoginResult.Success;
+                    return new LoginResultDto
+                    {
+                        Result = LoginResult.Success,
+                        User = existUser
+
+                    };
 
                 case PasswordVerificationResult.Failed:
-                    return LoginResult.Failure;
+                    return new LoginResultDto
+                    {
+                        Result = LoginResult.Failure,
+                        User = existUser
+                    };
 
                 default:
-                    return LoginResult.Failure;
+                    return new LoginResultDto
+                    {
+                        Result = LoginResult.Failure,
+                        User = existUser
+                    };
             }
         }
         #endregion

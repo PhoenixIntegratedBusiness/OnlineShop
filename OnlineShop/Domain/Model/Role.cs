@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace Domain.Model
 {
-    public class Role
+    public class Role: BaseEntity
     {
+        public int RoleId { get; set; }
+        public string  RoleName { get; set; }
+
+
+        #region relations
+        public ICollection<UserInRole> userInRoles { get; set; }
+        #endregion
     }
 }
