@@ -6,8 +6,8 @@ An e-commerce project built with ASP.NET Core MVC and Clean Architecture.
 
 ## Technologies
 
-- ASP.NET Core 9 MVC
-- Entity Framework Core 9
+- ASP.NET Core 8 MVC
+- Entity Framework Core 8
 - SQL Server
 - C#
 - Razor Views
@@ -40,3 +40,14 @@ Infrastructure Layers
 ## Developer
 Farnaz Zahedi
 Software Engineer | .NET Developer
+
+
+## Future Improvements
+
+- Permission-Based Authorization
+- Web API
+- JWT Authentication
+- Shopping Cart
+- Order Management
+- Payment Gateway
+- Unit Testing
