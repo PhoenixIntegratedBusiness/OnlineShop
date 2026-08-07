@@ -1,4 +1,5 @@
-﻿using Application.Extentions;
+﻿using Application.Enums.Account;
+using Application.Extentions;
 using Application.Services.Implementation;
 using Application.Services.Interfaces;
 using Domain.ViewModel.AccountViewModel;
@@ -10,7 +11,7 @@ using OnlineShop.web.Web.Extentions;
 namespace OnlineShop.web.Areas.UserPanel.Controllers
 {
     [Area("UserPanel")]
-    [Authorize]
+    [Authorize(Roles = "Admin,User,Secretary")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;

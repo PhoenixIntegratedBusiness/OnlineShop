@@ -1,4 +1,6 @@
-﻿using Domain.Model;
+﻿using Application.DTOs;
+using Application.Enums.Account;
+using Domain.Model;
 using Domain.ViewModel.AccountViewModel;
 using System;
 using System.Collections.Generic;
@@ -14,7 +16,7 @@ namespace Application.Services.Interfaces
       
         Task<ResultRegister> RegisterUserAsync(RegisterViewModel model);
 
-        Task<LoginResult> LoginUserAsync(LoginViewModel model);
+        Task<LoginResultDto> LoginUserAsync(LoginViewModel model);
 
         Task<Users?> GetUserByEmailAsync(string email);
         Task<ForgetPassResult> ForgetPasswordAsync(ForgetPasswordViewModel model);

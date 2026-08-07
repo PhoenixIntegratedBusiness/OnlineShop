@@ -13,10 +13,4 @@ namespace Domain.ViewModel.AccountViewModel
         [Required(ErrorMessage = "Please enter your {0}")]
         public required string Email { get; set; }
     }
-
-
-    public enum ForgetPassResult
-    {
-        Success, Failure,UserNotFound
-    }
 }

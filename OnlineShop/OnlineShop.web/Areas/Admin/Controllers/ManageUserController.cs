@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace OnlineShop.web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize]
+    [Authorize(Roles = "Admin,Manager")]
     public class ManageUserController : Controller
     {
         private readonly IUserService _userService;

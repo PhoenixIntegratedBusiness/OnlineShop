@@ -34,7 +34,6 @@ namespace Infra.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("GroupId")
@@ -48,11 +47,9 @@ namespace Infra.Data.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Summery")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tags")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Title")
@@ -120,6 +117,30 @@ namespace Infra.Data.Migrations
                     b.ToTable("ProductGroups");
                 });
 
+            modelBuilder.Entity("Domain.Model.Role", b =>
+                {
+                    b.Property<int>("RoleId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"));
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<bool>("isDelete")
+                        .HasColumnType("bit");
+
+                    b.HasKey("RoleId");
+
+                    b.ToTable("Roles");
+                });
+
             modelBuilder.Entity("Domain.Model.Slider", b =>
                 {
                     b.Property<int>("SliderId")
@@ -153,6 +174,29 @@ namespace Infra.Data.Migrations
                     b.ToTable("Sliders");
                 });
 
+            modelBuilder.Entity("Domain.Model.UserInRole", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("userInRoles");
+                });
+
             modelBuilder.Entity("Domain.Model.Users", b =>
                 {
                     b.Property<int>("UserId")
@@ -169,27 +213,40 @@ namespace Infra.Data.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.Property<bool>("IsAdmin")
                         .HasColumnType("bit");
 
                     b.Property<string>("Mobile")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(400)
+                        .HasColumnType("nvarchar(400)");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<bool>("isDelete")
                         .HasColumnType("bit");
 
                     b.HasKey("UserId");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("Mobile")
+                        .IsUnique();
+
+                    b.HasIndex("Username")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });
@@ -216,6 +273,25 @@ namespace Infra.Data.Migrations
                     b.Navigation("Product");
                 });
 
+            modelBuilder.Entity("Domain.Model.UserInRole", b =>
+                {
+                    b.HasOne("Domain.Model.Role", "Role")
+                        .WithMany("userInRoles")
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Model.Users", "User")
+                        .WithMany("userInRoles")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Role");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Domain.Model.Product", b =>
                 {
                     b.Navigation("ProductGallery");
@@ -224,6 +300,16 @@ namespace Infra.Data.Migrations
             modelBuilder.Entity("Domain.Model.ProductGroup", b =>
                 {
                     b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("Domain.Model.Role", b =>
+                {
+                    b.Navigation("userInRoles");
+                });
+
+            modelBuilder.Entity("Domain.Model.Users", b =>
+                {
+                    b.Navigation("userInRoles");
                 });
 #pragma warning restore 612, 618
         }

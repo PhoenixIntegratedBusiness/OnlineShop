@@ -29,10 +29,5 @@ namespace Domain.ViewModel.AccountViewModel
     }
 
 
-    public enum ResultRegister
-    {
-        Success,
-        Failed,
-        EmailExists
-    }
+   
 }
