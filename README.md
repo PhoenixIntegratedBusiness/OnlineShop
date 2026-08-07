@@ -6,18 +6,25 @@ An e-commerce project built with ASP.NET Core MVC and Clean Architecture.
 
 ## Technologies
 
-- ASP.NET Core 8 MVC
-- Entity Framework Core
+- ASP.NET Core 9 MVC
+- Entity Framework Core 9
 - SQL Server
-- Clean Architecture
-- Repository Pattern
-- Dependency Injection
+- C#
+- Razor Views
 - Bootstrap
+- Dependency Injection
+- Repository Pattern
+- Clean Architecture
+- Cookie Authentication
+- Role-Based Authorization
 
 ## Features
 
-- User Registration
-- Password Hashing
+- User registration
+- User login/logout
+- Password hashing
+- Remember Me authentication
+- Profile management
 - User Management
 - Admin Panel
 - CRUD Operations
@@ -27,4 +34,9 @@ An e-commerce project built with ASP.NET Core MVC and Clean Architecture.
 Web Layer
 Application Layer
 Domain Layer
-Infrastructure Layer
+Infrastructure Layers
+
+
+## Developer
+Farnaz Zahedi
+Software Engineer | .NET Developer
