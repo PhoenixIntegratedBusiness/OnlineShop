@@ -19,6 +19,13 @@ namespace Infra.Data.Repositories
             _Context = context;
         }
 
+        #region GetRoleUserAsync
+        public async Task<Users> GetRoleUserAsync(int userid)
+        {
+            return await _Context.Users.Include(r => r.userInRoles).ThenInclude(u => u.Role).FirstOrDefaultAsync(u => u.UserId == userid);
+        }
+        #endregion
+
         #region IsUserExistanceAsync
         public async Task<Users?> IsUserExistanceAsync(string username, string email, string mobile, int userId)
         {

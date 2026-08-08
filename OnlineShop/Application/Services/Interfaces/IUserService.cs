@@ -33,6 +33,10 @@ namespace Application.Services.Interfaces
         Task<EditUserRoleViewModel> GetUserByIdlAsync(int userId);
 
         Task<EditUserRoleResult> UpdateUserRoleAsync(EditUserRoleViewModel model);
+
+        Task<DeleteUserViewModel> FindUserByIdAsync(int UserId);
+        Task<bool> DeactiveUserAsync(int UserId);
+        Task<UserDetailsViewModel> UserDetailsByIdAsync(int UserId);
     }
 
    

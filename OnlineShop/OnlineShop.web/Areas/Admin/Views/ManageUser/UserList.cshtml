@@ -35,9 +35,9 @@
         </tr>
     </thead>
     <tbody>
-            @foreach (var item in Model)
-            {
-              <tr> 
+        @foreach (var item in Model)
+        {
+            <tr>
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Username)
@@ -58,10 +58,10 @@
                 </td>
                 <td>
                     <a asp-action="EditUserRole" asp-controller="ManageUser" asp-route-UserId="@item.UserId" class="btn btn-warning">Edit</a> |
-                    <a asp-action="Details" asp-route-UserId="@item.UserId" class="btn btn-info">Details</a> |
-                    <a asp-action="Delete" asp-route-UserId="@item.UserId" class="btn btn-danger">Delete</a>
+                    <a asp-action="UserDetails" asp-controller="ManageUser" asp-route-UserId="@item.UserId" class="btn btn-info">Details</a> |
+                    <a asp-action="DeleteUser" asp-controller="ManageUser" asp-route-UserId="@item.UserId" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
-            }
+        }
     </tbody>
 </table>

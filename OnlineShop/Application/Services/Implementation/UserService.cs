@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,6 +26,65 @@ namespace Application.Services.Implementation
             this.emailSender = emailSender;
             _passwordHasher = passwordHasher;
         }
+
+        #region DeactiveUserAsync
+        public async Task<bool> DeactiveUserAsync(int UserId)
+        {
+            var user = await _userRepository.GetUserByIdAsync(UserId);
+            if (user == null)
+            {
+                return false;
+            }
+            user.isDelete = true;
+            await _userRepository.SaveChangeAsync();
+            return true;
+        }
+        #endregion
+
+        #region UserDetailsByIdAsync     
+        public async Task<UserDetailsViewModel> UserDetailsByIdAsync(int UserId)
+        {
+            var user = await _userRepository.GetRoleUserAsync(UserId);
+            if (user == null)
+            {
+                return null;
+            }
+            return new UserDetailsViewModel()
+            {
+                Mobile = user.Mobile,
+                CreateDate = DateTime.Now,
+                Email = user.Email,
+                IsAdmin = user.IsAdmin,
+                isDelete = user.isDelete,
+                Username = user.Username,
+
+                SelectedRoleNames = user.userInRoles.Select(u => u.Role.RoleName).ToList(),
+            };
+        }
+        #endregion
+
+        #region FindUserByIdAsync
+        public async Task<DeleteUserViewModel> FindUserByIdAsync(int UserId)
+        {
+            var user = await _userRepository.GetRoleUserAsync(UserId);
+            if (user == null)
+            {
+                return null;
+            }
+            return new DeleteUserViewModel()
+        {
+            Mobile = user.Mobile,
+                UserId = user.UserId,
+                CreateDate = DateTime.Now,
+                Email = user.Email,
+                IsAdmin = user.IsAdmin,
+                isDelete = user.isDelete,
+                Username = user.Username,
+
+                SelectedRoleNames = user.userInRoles.Select(u => u.Role.RoleName).ToList(),
+            };
+        }
+        #endregion
 
         #region UpdateUserRoleAsync
         public async Task<EditUserRoleResult> UpdateUserRoleAsync(EditUserRoleViewModel model)
@@ -89,6 +149,9 @@ namespace Application.Services.Implementation
         public async Task<EditUserRoleViewModel> GetUserByIdlAsync(int userId)
         {
             var user = await _userRepository.GetUserByIdlAsync(userId);
+            if (user == null)
+                return null;
+
             return new EditUserRoleViewModel()
             {
                 UserId = userId,
