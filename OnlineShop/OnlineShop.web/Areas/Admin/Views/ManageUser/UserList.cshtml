@@ -57,9 +57,9 @@
                     @Html.DisplayFor(modelItem => item.isDelete)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.UserId" class="btn btn-warning">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-info">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.UserId" class="btn btn-danger">Delete</a>
+                    <a asp-action="EditUserRole" asp-controller="ManageUser" asp-route-UserId="@item.UserId" class="btn btn-warning">Edit</a> |
+                    <a asp-action="Details" asp-route-UserId="@item.UserId" class="btn btn-info">Details</a> |
+                    <a asp-action="Delete" asp-route-UserId="@item.UserId" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
             }

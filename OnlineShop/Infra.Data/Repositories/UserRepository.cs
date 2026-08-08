@@ -19,10 +19,36 @@ namespace Infra.Data.Repositories
             _Context = context;
         }
 
+        #region IsUserExistanceAsync
+        public async Task<Users?> IsUserExistanceAsync(string username, string email, string mobile, int userId)
+        {
+            return await _Context.Users.FirstOrDefaultAsync(u => u.UserId != userId &&
+                    (
+                        u.Username == username ||
+                        u.Email == email ||
+                        u.Mobile == mobile
+                    ));
+        }
+        #endregion
+
+        #region UpdateUserRoleAsync
+        public void UpdateUserRoleAsync(Users users)
+        {
+            _Context.Users.Add(users);
+        }
+        #endregion
+
+        #region GetUserByIdlAsync
+        public async Task<Users?> GetUserByIdlAsync(int userId)
+        {
+            return await _Context.Users.Include(x => x.userInRoles).FirstOrDefaultAsync(t => t.UserId == userId);
+        }
+        #endregion
+
         #region IsUserExistAsync
         public async Task<Users?> IsUserExistAsync(string username, string email, string Mobile)
         {
-            return await _Context.Users.FirstOrDefaultAsync(u => u.Username == username || u.Email == email || u.Mobile==Mobile);
+            return await _Context.Users.FirstOrDefaultAsync(u => u.Username == username || u.Email == email || u.Mobile == Mobile);
         }
         #endregion
 
@@ -37,7 +63,7 @@ namespace Infra.Data.Repositories
         }
         #endregion
 
-        #region   
+        #region GetRoles  
         public async Task<List<Role>> GetRoles()
         {
             return await _Context.Roles.ToListAsync();

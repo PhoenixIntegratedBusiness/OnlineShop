@@ -24,5 +24,10 @@ namespace Domain.Interfaces
         Task<Users?> IsUserExistAsync(string username,string email,string Mobile);
         Task CreateUserRoleAsync(Users users);
 
+        Task <Users?> GetUserByIdlAsync(int userId);
+        void UpdateUserRoleAsync(Users users);
+
+        Task<Users?> IsUserExistanceAsync( string username,string email,string mobile,int userId);
+
     }
 }
