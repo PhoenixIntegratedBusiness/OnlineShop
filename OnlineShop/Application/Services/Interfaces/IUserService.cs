@@ -23,13 +23,16 @@ namespace Application.Services.Interfaces
 
         Task<ResetPasswordResult> CheckActiveCodeAsync(ResetPasswordViewModel model);
 
-
         Task<ChangePassResult> ChangePasswordAsync(ChangePasswordViewModel model,int UserId);
 
         Task<List<UserRoleViewModel>> GetUsersWithRoleAsync();
 
         Task<List<Role>> GetRoles();
         Task<CreateUserRoleResult> CreateUserRoleAsync(CreateUserRoleViewModel model);
+
+        Task<EditUserRoleViewModel> GetUserByIdlAsync(int userId);
+
+        Task<EditUserRoleResult> UpdateUserRoleAsync(EditUserRoleViewModel model);
     }
 
    

@@ -24,8 +24,11 @@ namespace Domain.ViewModel.AccountViewModel
         /// 
 
 
-        public List<int> SelectedRoles { get; set; } = new();
+        // همه Roleها
         public List<Role> Roles { get; set; } = new();
+
+        // Roleهای فعلی User
+        public List<int> SelectedRoles { get; set; } = new();
 
 
         [Required(ErrorMessage = "Please enter {0}")]

@@ -26,6 +26,83 @@ namespace Application.Services.Implementation
             _passwordHasher = passwordHasher;
         }
 
+        #region UpdateUserRoleAsync
+        public async Task<EditUserRoleResult> UpdateUserRoleAsync(EditUserRoleViewModel model)
+        {
+            var res = await _userRepository.GetUserByIdlAsync(model.UserId);
+
+            if (res == null)
+            {
+                return EditUserRoleResult.Fauiler;
+            }
+
+            var userres = await _userRepository.IsUserExistanceAsync(
+                model.Username,
+                model.Email.Trim().ToLowerInvariant(),
+                model.Mobile,
+                model.UserId);
+
+            if (userres != null)
+            {
+                if (userres.Username == model.Username)
+                {
+                    return EditUserRoleResult.DuplicateUsername;
+                }
+                else if (userres.Email == model.Email.Trim().ToLowerInvariant())
+                {
+                    return EditUserRoleResult.DuplicateEmail;
+                }
+                else if (userres.Mobile == model.Mobile)
+                {
+                    return EditUserRoleResult.DuplicateMobile;
+                }
+            }
+
+            // Update the existing user
+            res.Email = model.Email.Trim().ToLowerInvariant();
+            res.Mobile = model.Mobile;
+            res.Username = model.Username;
+            res.IsAdmin = model.IsAdmin;
+            res.isDelete = model.isDelete;
+
+            // Only update the password if a new password was entered
+            if (!string.IsNullOrWhiteSpace(model.Password))
+            {
+                res.Password = _passwordHasher.HashPassword(res, model.Password);
+            }
+
+            res.userInRoles = model.SelectedRoles
+                .Select(roleId => new UserInRole
+                {
+                    RoleId = roleId,
+                    UserId = res.UserId
+                })
+                .ToList();
+
+            await _userRepository.SaveChangeAsync();
+
+            return EditUserRoleResult.Success;
+        }
+        #endregion
+
+        #region GetUserByIdlAsync
+        public async Task<EditUserRoleViewModel> GetUserByIdlAsync(int userId)
+        {
+            var user = await _userRepository.GetUserByIdlAsync(userId);
+            return new EditUserRoleViewModel()
+            {
+                UserId = userId,
+                CreateDate = user.CreateDate,
+                Email = user.Email,
+                IsAdmin = user.IsAdmin,
+                isDelete = user.isDelete,
+                Mobile = user.Mobile,
+                Username = user.Username,
+
+                SelectedRoles = user.userInRoles.Select(u => u.RoleId).ToList(),
+            };
+        }
+        #endregion
 
         #region CreateUserRoleAsync
         public async Task<CreateUserRoleResult> CreateUserRoleAsync(CreateUserRoleViewModel model)

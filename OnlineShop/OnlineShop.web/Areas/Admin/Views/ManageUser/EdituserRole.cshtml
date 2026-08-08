@@ -1,0 +1,91 @@
+﻿@using Domain.ViewModel.AccountViewModel
+@model EditUserRoleViewModel
+
+
+<section class="border-radius mb-4">
+
+    <article>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-sm-8 col-12">
+                    <div class="text-center mb-4" style="margin-top:3%">
+                        <h3>Edit User</h3>
+                    </div>
+                    <form asp-action="EditUserRole" asp-controller="ManageUser" method="post">
+
+                        <input type="hidden" asp-for="UserId" />
+                        <input type="hidden" asp-for="CreateDate" />
+                        <input type="hidden" asp-for="ActiveCode" />
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Username"></label>
+                            <input asp-for="Username" class="form-control" placeholder="Username">
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+
+                        @* <p>All Roles: @ViewBag.RoleList.Count</p>
+                        <p>User Roles: @Model.Roles.Count</p> *@
+
+                        @* 
+                          Check whether the current RoleId exists in SelectedRoles.
+                          If it exists, the checkbox will be checked.
+                          When the form is submitted, the selected RoleIds are
+                          bound to model.SelectedRoles.
+                        *@
+
+                        <div class="mb-3">
+                            <label>RoleName</label>
+                            @if (Model != null && ViewBag.RoleList != null)
+                            {
+                                @foreach (var role in ViewBag.RoleList)
+                                {
+                                    var isChecked = Model.SelectedRoles.Contains(role.RoleId);
+                                    <div class="form-check">
+                                        <input type="checkbox" name="SelectedRoles" value="@role.RoleId" @(isChecked ? "checked" : "") />
+                                        <label class="form-check-label">@role.RoleName</label>
+                                    </div>
+                                }
+}
+                            @* name="SelectedRoles"=viewmodel property *@
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" placeholder="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Mobile"></label>
+                            <input asp-for="Mobile" class="form-control" placeholder="Mobile">
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <input asp-for="isDelete" type="checkbox" class="mb-4">
+                            Is Delete
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <input asp-for="IsAdmin" type="checkbox" class="mb-4">
+                            Is Admin
+                        </div>
+
+                        <br />
+
+                        <input type="submit" value="EditUser" class="btn btn-success mb-4">
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </article>
+</section>

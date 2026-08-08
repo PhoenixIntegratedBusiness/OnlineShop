@@ -1,5 +1,6 @@
 ﻿using Application.Enums.Account;
 using Application.Services.Interfaces;
+using Domain.Model;
 using Domain.ViewModel.AccountViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -27,7 +28,6 @@ namespace OnlineShop.web.Areas.Admin.Controllers
         }
         #endregion
 
-
         #region CreateUserWith Role
 
         [Route("/CreateUser")]
@@ -45,14 +45,16 @@ namespace OnlineShop.web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
-                //foreach (var item in ModelState)
+                #region
+  //foreach (var item in ModelState)
                 //{
                 //    foreach (var error in item.Value.Errors)
                 //    {
                 //        Console.WriteLine($"{item.Key} : {error.ErrorMessage}");
                 //    }
                 //}
-
+                #endregion
+              
                 model.Roles = await _userService.GetRoles();
                 return View(model);
             }
@@ -62,12 +64,12 @@ namespace OnlineShop.web.Areas.Admin.Controllers
             {
                 case CreateUserRoleResult.DuplicateEmail:
                     TempData["AlertType"] = SwalExtentions.Warning;
-                    TempData["AlertMessage"] = "Duplicate Email";                   
+                    TempData["AlertMessage"] = "Duplicate Email";
                     break;
 
                 case CreateUserRoleResult.DuplicateMobile:
                     TempData["AlertType"] = SwalExtentions.Warning;
-                    TempData["AlertMessage"] = "Duplicate Mobile";                   
+                    TempData["AlertMessage"] = "Duplicate Mobile";
                     break;
 
                 case CreateUserRoleResult.DuplicateUsername:
@@ -88,6 +90,60 @@ namespace OnlineShop.web.Areas.Admin.Controllers
 
             model.Roles = await _userService.GetRoles();
             return View(model);
+        }
+        #endregion
+
+        #region EditUserWithRoles
+
+        [Route("/EditUserRole")]
+        public async Task<IActionResult> EditUserRole(int UserId)
+        {
+            var user = await _userService.GetUserByIdlAsync(UserId);
+            ViewBag.RoleList = await _userService.GetRoles();
+            return View(user);
+        }
+
+        [HttpPost("/EditUserRole")]
+        public async Task<IActionResult> EditUserRole(EditUserRoleViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var res =await _userService.UpdateUserRoleAsync(model);
+
+            switch (res)
+            {
+                case EditUserRoleResult.DuplicateEmail:
+                    TempData["AlertType"] = SwalExtentions.Warning;
+                    TempData["AlertMessage"] = "Duplicate Email";
+                    break;
+
+                case EditUserRoleResult.DuplicateMobile:
+                    TempData["AlertType"] = SwalExtentions.Warning;
+                    TempData["AlertMessage"] = "Duplicate Mobile";
+                    break;
+
+                case EditUserRoleResult.DuplicateUsername:
+                    TempData["AlertType"] = SwalExtentions.Warning;
+                    TempData["AlertMessage"] = "Duplicate Username";
+                    break;
+
+                case EditUserRoleResult.Fauiler:
+                    TempData["AlertType"] = SwalExtentions.Error;
+                    TempData["AlertMessage"] = "Operation faild";
+                    break;
+
+                case EditUserRoleResult.Success:
+                    TempData["AlertType"] = SwalExtentions.Success;
+                    TempData["AlertMessage"] = "Operation has been done successfuly";
+                    return RedirectToAction(nameof(UserList));
+            }
+
+            var user = await _userService.GetUserByIdlAsync(model.UserId);
+            ViewBag.RoleList = await _userService.GetRoles();
+            return View(model);
+
         }
         #endregion
     }
