@@ -28,6 +28,17 @@ namespace OnlineShop.web.Areas.Admin.Controllers
         }
         #endregion
 
+        #region UserDetails
+
+        [HttpGet("/UserDetails")]
+        public async Task<IActionResult> UserDetails(int UserId)
+        {
+            var user = await _userService.UserDetailsByIdAsync(UserId);
+            return View(user);
+        }
+        #endregion
+       
+
         #region CreateUserWith Role
 
         [Route("/CreateUser")]
@@ -46,7 +57,7 @@ namespace OnlineShop.web.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 #region
-  //foreach (var item in ModelState)
+                //foreach (var item in ModelState)
                 //{
                 //    foreach (var error in item.Value.Errors)
                 //    {
@@ -54,7 +65,7 @@ namespace OnlineShop.web.Areas.Admin.Controllers
                 //    }
                 //}
                 #endregion
-              
+
                 model.Roles = await _userService.GetRoles();
                 return View(model);
             }
@@ -108,9 +119,10 @@ namespace OnlineShop.web.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.RoleList = await _userService.GetRoles();
                 return View(model);
             }
-            var res =await _userService.UpdateUserRoleAsync(model);
+            var res = await _userService.UpdateUserRoleAsync(model);
 
             switch (res)
             {
@@ -144,6 +156,31 @@ namespace OnlineShop.web.Areas.Admin.Controllers
             ViewBag.RoleList = await _userService.GetRoles();
             return View(model);
 
+        }
+        #endregion
+
+        #region DeleteUser
+        [HttpGet("/DeleteUser")]
+        public async Task<IActionResult> DeleteUser(int UserId)
+        {
+            var user = await _userService.FindUserByIdAsync(UserId);
+            return View(user);
+        }
+
+        [HttpPost("/DeleteUser")]
+        public async Task<IActionResult> DeleteUserConfirmed(int UserId)
+        {
+           
+            var res = await _userService.DeactiveUserAsync(UserId);
+            if (res)
+            {
+                TempData["AlertType"] = SwalExtentions.Success;
+                TempData["AlertMessage"] = "User has been deactivated successfully.";
+                return RedirectToAction(nameof(UserList));
+            }
+            TempData["AlertType"] = SwalExtentions.Warning;
+            TempData["AlertMessage"] = "Operation faild";
+            return RedirectToAction(nameof(UserList));
         }
         #endregion
     }

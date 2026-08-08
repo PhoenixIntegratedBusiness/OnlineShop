@@ -32,8 +32,16 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlVXNlclxDcmVhdGVVc2VyLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/02-Learning/Test Proj/OnlineShop Project/OnlineShop/OnlineShop.web/Areas/Admin/Views/ManageUser/DeleteUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlVXNlclxEZWxldGVVc2VyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/02-Learning/Test Proj/OnlineShop Project/OnlineShop/OnlineShop.web/Areas/Admin/Views/ManageUser/EdituserRole.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlVXNlclxFZGl0dXNlclJvbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/02-Learning/Test Proj/OnlineShop Project/OnlineShop/OnlineShop.web/Areas/Admin/Views/ManageUser/UserDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlVXNlclxVc2VyRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [E:/02-Learning/Test Proj/OnlineShop Project/OnlineShop/OnlineShop.web/Areas/Admin/Views/ManageUser/UserList.cshtml]
