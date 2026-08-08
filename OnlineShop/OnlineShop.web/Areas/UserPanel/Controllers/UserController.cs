@@ -51,24 +51,29 @@ namespace OnlineShop.web.Areas.UserPanel.Controllers
                                 TempData["AlertType"] = SwalExtentions.Success;
                                 TempData["AlertMessage"] = $"Dear {username}Your Password has been Changed successfully";
                                 return RedirectToAction(nameof(ChangePassword));
+
                             case ChangePassResult.Failure:
                                 TempData["AlertType"] = SwalExtentions.Error;
                                 TempData["AlertMessage"] = "Operation faild";
-                                return View(model);
+                               break;
 
                             case ChangePassResult.WrongCurrentPass:
                                 TempData["AlertType"] = SwalExtentions.Warning;
                                 TempData["AlertMessage"] = "Curront password is not correct";
-                                return View(model);
+                                break;
                             case ChangePassResult.NewPassNotMaching:
                                 TempData["AlertType"] = SwalExtentions.Warning;
                                 TempData["AlertMessage"] = "New password and ReNew password is not matching";
-                                return View(model);
+                                break;
 
                             case ChangePassResult.Unauthorized:
                                 TempData["AlertType"] = SwalExtentions.Warning;
                                 TempData["AlertMessage"] = "Unauthorized User";
-                                return View(model);
+                                break;
+                            case ChangePassResult.CurrentPassword:
+                                TempData["AlertType"] = SwalExtentions.Warning;
+                                TempData["AlertMessage"] = "You can not chose current password!";
+                                break;
                         }
                     }
                 }

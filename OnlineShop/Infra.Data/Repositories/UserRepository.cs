@@ -19,19 +19,49 @@ namespace Infra.Data.Repositories
             _Context = context;
         }
 
+        #region IsUserExistAsync
+        public async Task<Users?> IsUserExistAsync(string username, string email, string Mobile)
+        {
+            return await _Context.Users.FirstOrDefaultAsync(u => u.Username == username || u.Email == email || u.Mobile==Mobile);
+        }
+        #endregion
+
+        #region CreateUserRoleAsync
+        public async Task CreateUserRoleAsync(Users users)
+        {
+            await _Context.Users.AddAsync(users);
+            //foreach (var item in users.userInRoles)
+            //{
+            //   await _Context.userInRoles.AddAsync(item);
+            //}
+        }
+        #endregion
+
+        #region   
+        public async Task<List<Role>> GetRoles()
+        {
+            return await _Context.Roles.ToListAsync();
+        }
+        #endregion
+
+        #region  GetUsersWithRoleAsync
+        public async Task<List<Users>> GetUsersWithRoleAsync()
+        {
+            return await _Context.Users.Include(r => r.userInRoles).ThenInclude(u => u.Role).ToListAsync();
+        }
+        #endregion
 
         #region GetUserByIdAsync
         public async Task<Users?> GetUserByIdAsync(int id)
         {
-            return await _Context.Users.FirstOrDefaultAsync(u=>u.UserId == id);
+            return await _Context.Users.FirstOrDefaultAsync(u => u.UserId == id);
         }
         #endregion
-
 
         #region GetUserByEmailAsync
         public async Task<Users?> GetUserByEmailAsync(string email)
         {
-            return await _Context.Users.Include(ur=>ur.userInRoles).ThenInclude(r=>r.Role).FirstOrDefaultAsync(t=>t.Email==email && t.isDelete==false);
+            return await _Context.Users.Include(ur => ur.userInRoles).ThenInclude(r => r.Role).FirstOrDefaultAsync(t => t.Email == email && t.isDelete == false);
 
         }
         #endregion
@@ -68,9 +98,10 @@ namespace Infra.Data.Repositories
         #region CheckActiveCodeAsync
         public async Task<Users?> CheckActiveCodeAsync(string email, string activecode)
         {
-            return await _Context.Users.FirstOrDefaultAsync(u=>u.ActiveCode== activecode && u.Email== email && u.isDelete==false);
+            return await _Context.Users.FirstOrDefaultAsync(u => u.ActiveCode == activecode && u.Email == email && u.isDelete == false);
         }
-          #endregion
+
+        #endregion
 
     }
 }

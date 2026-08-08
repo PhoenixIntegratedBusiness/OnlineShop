@@ -8,6 +8,6 @@ namespace Application.Enums.Account
 {
     public enum ChangePassResult
     {
-        Success, Failure, Unauthorized, WrongCurrentPass, NewPassNotMaching
+        Success, Failure, Unauthorized, WrongCurrentPass, NewPassNotMaching, CurrentPassword
     }
 }

@@ -1,0 +1,83 @@
+﻿@using Domain.ViewModel.AccountViewModel
+@model CreateUserRoleViewModel
+
+<section class="border-radius mb-4">
+
+    <article>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-sm-8 col-12">
+                    <div class="text-center mb-4" style="margin-top:3%">
+                        <h3>Create User</h3>
+                    </div>
+                    <form asp-action="CreateUser" asp-controller="ManageUser" method="post">
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Email">
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Username"></label>
+                            <input asp-for="Username" class="form-control" placeholder="Username">
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="mb-3">
+                            <label>RoleName</label>
+
+                            @if (Model != null && Model.Roles != null)
+                            {
+                                foreach (var role in Model.Roles)
+                                {
+                                    <div class="form-check">
+
+                                        <input class="form-check-input"
+                                               type="checkbox"
+                                               name="SelectedRoles"
+                                               value="@role.RoleId"
+                                               id="role_@role.RoleId" />
+
+                                        <label class="form-check-label" for="role_@role.RoleId">
+                                            @role.RoleName
+                                        </label>
+
+                                    </div>
+                                }
+                            }
+
+                        </div>
+
+
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" placeholder="Password">
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label asp-for="Mobile"></label>
+                            <input asp-for="Mobile" class="form-control" placeholder="Mobile">
+                            <span asp-validation-for="Mobile" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <input asp-for="IsAdmin" type="checkbox" class="mb-4">
+                            Is Admin
+                        </div>
+
+                        <br />
+
+                        <input type="submit" value="CreateUser" class="btn btn-success mb-4">
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
