@@ -19,5 +19,10 @@ namespace Domain.Interfaces
         Task<Users?> CheckActiveCodeAsync(string email,string activecode);
         Task<Users?> GetUserByIdAsync(int id);
 
+        Task<List<Users>> GetUsersWithRoleAsync();
+        Task<List<Role>> GetRoles();
+        Task<Users?> IsUserExistAsync(string username,string email,string Mobile);
+        Task CreateUserRoleAsync(Users users);
+
     }
 }

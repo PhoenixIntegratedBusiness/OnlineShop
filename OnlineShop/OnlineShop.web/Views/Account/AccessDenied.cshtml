@@ -1,4 +1,27 @@
-﻿<div class="text-center">
-    <h2>Access Denied</h2>
-    <p>You do not have permission to access this page.</p>
-</div>
+﻿@using Application.Extentions
+
+<section>
+
+    <article>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-sm-8 col-12">
+                    <div class="text-center mb-4" style="margin-top:17%">
+                        <h3>Access Denied</h3>
+                    </div>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        var username = User.GetUsername();
+                        <p> <span style="font:bolder">Dear @username </span>!You do not have permission to access this page.</p>
+                    }
+                    else
+                    {
+                        <p>You do not have permission to access this page.</p>
+                    }
+                    
+                </div>
+            </div>
+        </div>
+    </article>
+</section>

@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Application.Extentions
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -222,7 +223,16 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                @if (User.Identity.IsAuthenticated)
+                                {
+                                    var usename = User.GetUsername();
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">@usename</span>
+                                }
+                                else
+                                {
+                                    <span class="mr-2 d-none d-lg-inline text-gray-600 small">Guests</span>
+                                }
+
                                 <img class="img-profile rounded-circle"
                                      src="/UserPanel/assets/img/undraw_profile.svg">
                             </a>

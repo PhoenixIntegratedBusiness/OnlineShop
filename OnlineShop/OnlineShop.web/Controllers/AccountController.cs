@@ -50,6 +50,7 @@ namespace OnlineShop.web.Controllers
                         TempData["AlertMessage"] = "Operation faild";
                         return View(model);
 
+
                     case ResultRegister.EmailExists:
                         //ModelState.AddModelError("Email", "Email is duplicate");
                         TempData["AlertType"] = SwalExtentions.Error;
@@ -208,6 +209,7 @@ namespace OnlineShop.web.Controllers
         #endregion
 
         #region AccessDenied
+        [Route("AccessDenied")]
         public IActionResult AccessDenied()
         {
             return View();

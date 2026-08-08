@@ -25,6 +25,11 @@ namespace Application.Services.Interfaces
 
 
         Task<ChangePassResult> ChangePasswordAsync(ChangePasswordViewModel model,int UserId);
+
+        Task<List<UserRoleViewModel>> GetUsersWithRoleAsync();
+
+        Task<List<Role>> GetRoles();
+        Task<CreateUserRoleResult> CreateUserRoleAsync(CreateUserRoleViewModel model);
     }
 
    

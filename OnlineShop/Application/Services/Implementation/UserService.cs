@@ -5,7 +5,6 @@ using Application.Services.Interfaces;
 using Domain.Interfaces;
 using Domain.Model;
 using Domain.ViewModel.AccountViewModel;
-using Infra.Data.Repositories;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -27,6 +26,81 @@ namespace Application.Services.Implementation
             _passwordHasher = passwordHasher;
         }
 
+
+        #region CreateUserRoleAsync
+        public async Task<CreateUserRoleResult> CreateUserRoleAsync(CreateUserRoleViewModel model)
+        {
+            var userres = await _userRepository.IsUserExistAsync(model.Username, model.Email.Trim().ToLowerInvariant(), model.Mobile);
+
+            if (userres != null)
+            {
+                if (userres.Username == model.Username)
+                {
+                    return CreateUserRoleResult.DuplicateUsername;
+                }
+                else if (userres.Email == model.Email)
+                {
+                    return CreateUserRoleResult.DuplicateEmail;
+                }
+                else if (userres.Mobile == model.Mobile)
+                {
+                    return CreateUserRoleResult.DuplicateMobile;
+                }
+            }
+            else
+            {
+                var user = new Users()
+                {
+                    Email = model.Email.ToLowerInvariant().Trim(),
+                    Mobile = model.Mobile,
+                    Username = model.Username,
+                    ActiveCode = "123",
+                    CreateDate = DateTime.Now,
+                    isDelete = false,
+                };
+                user.Password = _passwordHasher.HashPassword(user, model.Password);
+
+                user.userInRoles = model.SelectedRoles
+              .Select(roleId => new UserInRole
+              {
+                  RoleId = roleId
+              }).ToList();
+
+                await _userRepository.CreateUserRoleAsync(user);
+                await _userRepository.SaveChangeAsync();
+                return CreateUserRoleResult.Success;
+            }
+            return CreateUserRoleResult.Fauiler;
+        }
+        #endregion
+
+        #region  GetRoles  
+        public async Task<List<Role>> GetRoles()
+        {
+            return await _userRepository.GetRoles();
+        }
+        #endregion
+
+        #region GetUsersWithRoleAsync
+        public async Task<List<UserRoleViewModel>> GetUsersWithRoleAsync()
+        {
+            var users = await _userRepository.GetUsersWithRoleAsync();
+            return users.Select(user => new UserRoleViewModel
+            {
+                UserId = user.UserId,
+                Username = user.Username,
+                Email = user.Email,
+                Mobile = user.Mobile,
+                CreateDate = DateTime.Now,
+                IsAdmin = user.IsAdmin,
+                isDelete = user.isDelete,
+
+                Roles = user.userInRoles.Select(r => r.Role.RoleName).ToList()
+            }).ToList();
+        }
+        #endregion
+
+        #region ChangePasswordAsync
         public async Task<ChangePassResult> ChangePasswordAsync(ChangePasswordViewModel model, int UserId)
         {
             var user = await _userRepository.GetUserByIdAsync(UserId);
@@ -53,14 +127,23 @@ namespace Application.Services.Implementation
                     }
 
                 case PasswordVerificationResult.SuccessRehashNeeded:
-                    _passwordHasher.HashPassword(user, model.NewPassword);
-                    _userRepository.UserUpdate(user);
-                    await _userRepository.SaveChangeAsync();
-                    return ChangePassResult.Success;
+                    if (model.NewPassword == model.ReNewPassword)
+                    {
+                        user.Password = _passwordHasher.HashPassword(user, model.NewPassword);
+                        _userRepository.UserUpdate(user);
+                        await _userRepository.SaveChangeAsync();
+                        return ChangePassResult.Success;
+                    }
+                    else
+                    {
+                        return ChangePassResult.NewPassNotMaching;
+                    }
             }
+
 
             return ChangePassResult.Failure;
         }
+        #endregion
 
         #region CheckActiveCodeAsync
         public async Task<ResetPasswordResult> CheckActiveCodeAsync(ResetPasswordViewModel model)
@@ -82,7 +165,6 @@ namespace Application.Services.Implementation
             return ResetPasswordResult.Failure;
         }
         #endregion
-
 
         #region ForgetPasswordAsync
         public async Task<ForgetPassResult> ForgetPasswordAsync(ForgetPasswordViewModel model)
@@ -137,6 +219,7 @@ namespace Application.Services.Implementation
 
             return users;
         }
+
         #endregion
 
         #region LoginUserAsync 
@@ -161,11 +244,11 @@ namespace Application.Services.Implementation
             switch (result)
             {
                 case PasswordVerificationResult.Success:
-                    return  new LoginResultDto
+                    return new LoginResultDto
                     {
                         Result = LoginResult.Success,
-                        User= existUser
-                    }; 
+                        User = existUser
+                    };
 
                 case PasswordVerificationResult.SuccessRehashNeeded:
                     existUser.Password = _passwordHasher.HashPassword(existUser, model.Password);

@@ -1,5 +1,5 @@
 ﻿@using Domain.ViewModel.AccountViewModel
-@model IEnumerable<UserViewModel>
+@model IEnumerable<UserRoleViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,7 +8,7 @@
 <h1>User List</h1>
 
 <p>
-    <a asp-action="Create" class="btn-success">Create New User</a>
+    <a asp-action="CreateUser" class="btn btn-success">Create New User</a>
 </p>
 
 <table class="table">
@@ -22,7 +22,7 @@
             </th>
 
             <th>
-                @Html.DisplayNameFor(model => model.IsAdmin)
+                Roles
             </th>
 
             <th>
@@ -46,7 +46,7 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsAdmin)
+                    @string.Join(" , ", item.Roles)
                 </td>
 
                 <td>
