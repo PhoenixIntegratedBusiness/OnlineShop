@@ -48,6 +48,22 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcTWFuYWdlVXNlclxVc2VyTGlzdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[E:/02-Learning/Test Proj/OnlineShop Project/OnlineShop/OnlineShop.web/Areas/Admin/Views/ProductGroup/CreateproductGroup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdEdyb3VwXENyZWF0ZXByb2R1Y3RHcm91cC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/02-Learning/Test Proj/OnlineShop Project/OnlineShop/OnlineShop.web/Areas/Admin/Views/ProductGroup/EditProductGroup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdEdyb3VwXEVkaXRQcm9kdWN0R3JvdXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/02-Learning/Test Proj/OnlineShop Project/OnlineShop/OnlineShop.web/Areas/Admin/Views/ProductGroup/ProductGroupDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdEdyb3VwXFByb2R1Y3RHcm91cERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[E:/02-Learning/Test Proj/OnlineShop Project/OnlineShop/OnlineShop.web/Areas/Admin/Views/ProductGroup/ProductGroupList.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUHJvZHVjdEdyb3VwXFByb2R1Y3RHcm91cExpc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [E:/02-Learning/Test Proj/OnlineShop Project/OnlineShop/OnlineShop.web/Areas/Admin/Views/Shared/_AdminPanelLayout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcU2hhcmVkXF9BZG1pblBhbmVsTGF5b3V0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 

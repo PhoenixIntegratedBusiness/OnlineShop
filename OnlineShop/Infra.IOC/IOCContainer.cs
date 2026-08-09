@@ -22,12 +22,16 @@ namespace Infra.IOC
 
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IEmailSender, EmailSender>();
+            services.AddScoped<IProductGroupService, ProductGroupService>();
+            services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IPasswordHasher<Users>, PasswordHasher<Users>>();
             #endregion
 
             #region Repository Registration
-
+            
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
+            services.AddScoped<IProductRepository,ProductRepository>();
 
             #endregion
 

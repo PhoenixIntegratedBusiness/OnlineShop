@@ -1,0 +1,51 @@
+﻿@using Domain.ViewModel.ProductGroupViewModel
+@model ProductGroupViewModel
+
+
+<section class="border-radius mb-4">
+
+    <article>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-sm-8 col-12">
+                    <div class="text-center mb-4" style="margin-top:3%">
+                        <h3>Edit Product Group</h3>
+                    </div>
+                    <form asp-action="EditProductGroup" asp-controller="ProductGroup" method="post">
+
+                        <input type="hidden" asp-for="GroupId" />
+                        <input type="hidden" asp-for="CreateDate" />
+                        
+
+                        <div class="form-group mb-4">
+                            <label asp-for="GroupTitle"></label>
+                            <input asp-for="GroupTitle" class="form-control" placeholder="Group Title">
+                            <span asp-validation-for="GroupTitle" class="text-danger"></span>
+                        </div>
+
+
+                        <div class="form-group mb-3">
+                            <input asp-for="isDelete" type="checkbox" class="mb-4">
+                            Is Delete
+                        </div>
+
+
+                        <br />
+
+                        <div class="d-flex align-items-center gap-4">
+                            <button type="submit" class="btn btn-success" style="margin-right:10px">
+                                Edit Group
+                            </button>
+
+                            <a asp-action="ProductGroupList" asp-controller="ProductGroup" class="btn btn-info ms-2">
+                                Back to List
+                            </a>
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</section>

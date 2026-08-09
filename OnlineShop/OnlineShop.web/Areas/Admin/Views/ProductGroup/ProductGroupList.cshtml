@@ -1,0 +1,54 @@
+﻿@using Domain.ViewModel.ProductGroupViewModel
+@model IEnumerable<ProductGroupViewModel>
+
+@{
+    ViewData["Title"] = "ProductGroup-list";
+}
+
+<h1>Product Group list</h1>
+ 
+<br />
+<p>
+    <a asp-action="CreateProductGroup" class="btn btn-success">Create New ProductGroup</a>
+</p>
+<br />
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GroupTitle)
+            </th>
+        
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isDelete)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="@((item.isDelete) ? "table-danger" : "")">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.GroupTitle)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreateDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isDelete)
+                </td>
+                <td>
+                    <a asp-action="EditProductGroup" asp-controller="ProductGroup" asp-route-groupId="@item.GroupId" class="btn btn-warning">Edit</a> |
+                    <a asp-action="ProductGroupDetails" asp-controller="ProductGroup" asp-route-groupId="@item.GroupId" class="btn btn-info">Details</a> |
+                    <a asp-action="DeleteGroup" asp-controller="ProductGroup" asp-route-groupId="@item.GroupId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -31,6 +31,7 @@ namespace OnlineShop.web.Controllers
         }
 
         [HttpPost("Register")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -75,6 +76,7 @@ namespace OnlineShop.web.Controllers
 
 
         [HttpPost("Login")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model)
         {
             if (!ModelState.IsValid)
@@ -97,10 +99,7 @@ namespace OnlineShop.web.Controllers
                     };
                     foreach (var userRole in res.User.userInRoles)
                     {
-                        claims.Add(new Claim(
-                            ClaimTypes.Role,
-                            userRole.Role.RoleName
-                        ));
+                        claims.Add(new Claim(ClaimTypes.Role,userRole.Role.RoleName));
                     }
 
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -148,6 +147,7 @@ namespace OnlineShop.web.Controllers
         }
 
         [HttpPost("Forget-Password")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgetPassword(ForgetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -181,6 +181,7 @@ namespace OnlineShop.web.Controllers
         }
 
         [HttpPost("Reset-Password")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
