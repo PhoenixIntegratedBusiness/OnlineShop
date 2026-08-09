@@ -28,9 +28,16 @@ namespace Application.Extentions
         }
 
 
-        public static string ? GetUserEmail(this ClaimsPrincipal claimsPrincipal)
+        public static string? GetUserEmail(this ClaimsPrincipal claimsPrincipal)
         {
-            return claimsPrincipal.Claims.FirstOrDefault(u=>u.Type==ClaimTypes.Email)?.Value;
+            return claimsPrincipal.Claims.FirstOrDefault(u => u.Type == ClaimTypes.Email)?.Value;
+        }
+
+        public static List<string>? GetUserRolesName(this ClaimsPrincipal claimsPrincipal)
+        {
+         
+             return claimsPrincipal.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value).ToList();
+             
         }
     }
 }

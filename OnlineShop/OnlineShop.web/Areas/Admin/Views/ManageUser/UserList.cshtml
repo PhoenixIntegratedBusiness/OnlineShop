@@ -37,7 +37,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr class="@((item.isDelete) ? "table-danger" : "")">
 
                 <td>
                     @Html.DisplayFor(modelItem => item.Username)

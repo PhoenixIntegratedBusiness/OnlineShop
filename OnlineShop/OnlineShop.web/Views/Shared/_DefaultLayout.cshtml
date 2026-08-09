@@ -83,10 +83,15 @@
                                 string? userName = User.GetUsername();
                                 int? userid = User.GetUserId();
                                 string? userEmail = User.GetUserEmail();
+                               @*  var roles = User.GetUserRolesName(); *@
                                 <div class="d-flex align-items-center gap-3">
 
                                     <span style="color:#81c408">
-                                        Welcome @userName
+                                        Welcome @userName  
+                                       @* @foreach(var item in roles)
+                                        {
+                                            <h1>@item</h1>
+                                        } *@
                                     </span>
 
                                     <a asp-controller="Account"

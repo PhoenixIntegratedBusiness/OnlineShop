@@ -50,9 +50,18 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" asp-action="UserList" asp-area="UserPanel" asp-controller="User">
+                <a class="nav-link" asp-action="UserList" asp-area="Admin" asp-controller="ManageUser">
                     <i class="fas fa-fw fa-users"></i>
                     <span>User List</span>
+                </a>
+                <a class="nav-link" asp-action="ProductGroupList" asp-area="Admin" asp-controller="ProductGroup">
+                    <i class="fas fa-fw fa-layer-group"></i>
+                    <span>Product Groups</span>
+                </a>
+
+                <a class="nav-link" asp-action="ProductList" asp-area="Admin" asp-controller="Product">
+                    <i class="fas fa-fw fa-inbox"></i>
+                    <span>Products</span>
                 </a>
             </li>
             <!-- Divider -->

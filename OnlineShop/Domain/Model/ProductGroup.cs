@@ -15,8 +15,6 @@ namespace Domain.Model
         [Display(Name = "عنوان گروه")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string GroupTitle { get; set; }
-
-
         public List<Product>? Products { get; set; }
     }
 }

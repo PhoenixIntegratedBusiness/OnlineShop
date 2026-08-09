@@ -1,0 +1,33 @@
+﻿@using Domain.ViewModel.ProductGroupViewModel
+@model CreateProductGroupViewModel
+
+
+
+<section class="border-radius mb-4">
+
+    <article>
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6 col-sm-8 col-12">
+                    <div class="text-center mb-4" style="margin-top:3%">
+                        <h3>Create Product Group</h3>
+                    </div>
+                    <form asp-action="CreateProductGroup" asp-controller="ProductGroup" method="post">
+
+                        <div class="form-group mb-4">
+                            <label asp-for="GroupTitle"></label>
+                            <input asp-for="GroupTitle" class="form-control" placeholder="Group Title">
+                            <span asp-validation-for="GroupTitle" class="text-danger"></span>
+                        </div>
+
+                        <br />
+
+                        <input type="submit" value="Create" class="btn btn-success mb-4">
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+    </article>
+</section>

@@ -10,10 +10,8 @@ namespace Domain.Model
 {
     public class Product : BaseEntity
     {
-        [Key]
+       
         public int ProductId { get; set; }
-
-     
         public  int GroupId { get; set; }
         [ForeignKey("GroupId")]
         public ProductGroup ? ProductGroup { get; set; }

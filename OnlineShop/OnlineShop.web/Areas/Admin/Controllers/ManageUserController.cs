@@ -52,6 +52,7 @@ namespace OnlineShop.web.Areas.Admin.Controllers
 
 
         [HttpPost("/CreateUser")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> CreateUser(CreateUserRoleViewModel model)
         {
             if (!ModelState.IsValid)
@@ -115,6 +116,7 @@ namespace OnlineShop.web.Areas.Admin.Controllers
         }
 
         [HttpPost("/EditUserRole")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditUserRole(EditUserRoleViewModel model)
         {
             if (!ModelState.IsValid)
@@ -168,6 +170,7 @@ namespace OnlineShop.web.Areas.Admin.Controllers
         }
 
         [HttpPost("/DeleteUser")]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteUserConfirmed(int UserId)
         {
            
