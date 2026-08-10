@@ -110,7 +110,7 @@
 
 
             <!-- Sidebar Toggler (Sidebar) -->
-              <li>
+            <li>
                 <div class="text-center d-none d-md-inline">
                     <button class="rounded-circle border-0" id="sidebarToggle"></button>
                 </div>
@@ -280,7 +280,6 @@
         </div>
     </div>
     <!-- End of Page Wrapper -->
-
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
@@ -313,9 +312,53 @@
     <!-- Custom scripts for all pages-->
     <script src="/UserPanel/assets/js/sb-admin-2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+
+    <script>
+        function ShowPreview(input) {
+            if (input.files && input.files[0]) {
+                var ImageDir = new FileReader();
+                ImageDir.onload = function(e) {
+                    $('#impPrev').attr('src', e.target.result);
+                }
+                ImageDir.readAsDataURL(input.files[0]);
+            }
+        }
 
 
+         $(function() {
+            $("#fileupload").change(function() {
+                if (typeof (FileReader) != "undefined") {
+                    var dvPreview = $("#dvPreview");
+                    dvPreview.html("");
+                    var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.jpg|.jpeg|.gif|.png|.bmp)$/;
+                    $($(this)[0].files).each(function() {
+                        var file = $(this);
+                        if (regex.test(file[0].name.toLowerCase())) {
+                            var reader = new FileReader();
+                            reader.onload = function(e) {
+                                var img = $("<img />");
+                                img.attr("style", "height:100px;width: 100px;margin-right: 5px;");
+                                img.attr("src", e.target.result);
+                                dvPreview.append(img);
+                            }
+                            reader.readAsDataURL(file[0]);
+                        } else {
+                            alert(file[0].name + " فایل انتخابی شما قالب تصویری ندارد");
+                            dvPreview.html("");
+                            return false;
+                        }
+                    });
+                } else {
+                    alert("لطفا نسخه مرورگر خود را ارتقاع دهید");
+                }
+            });
+        });
+    </script>
     <partial name="_SweetAlert" />
+
+    @RenderSection("Scripts", false)
+
 
 </body>
 </html>

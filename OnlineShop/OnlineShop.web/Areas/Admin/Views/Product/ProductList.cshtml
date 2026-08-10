@@ -1,0 +1,62 @@
+﻿@using Domain.ViewModel.ProductViewModel
+@model IEnumerable<ProductViewModel>
+
+
+<h1>Product List</h1>
+
+<p>
+    <a asp-action="CreateProduct" class="btn btn-success">Create New Product</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductGroup.GroupTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreateDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isDelete)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="@((item.isDelete) ? "table-danger" : "")">
+
+                <td>
+                    <img src="/Images/product/ProductImg/@item.ImageName" style="width:70px;height:70px" />
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => item.ProductGroup.GroupTitle)
+                </td>
+                <td>
+                     @item.CreateDate.ToString("yyyy-MM-dd")
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.isDelete)
+                </td>
+                <td>
+                    <a asp-action="EditUserRole" asp-controller="ManageUser" asp-route-UserId="@item.ProductId" class="btn btn-warning">Edit</a> |
+                    <a asp-action="UserDetails" asp-controller="ManageUser" asp-route-UserId="@item.ProductId" class="btn btn-info">Details</a> |
+                    <a asp-action="DeleteUser" asp-controller="ManageUser" asp-route-UserId="@item.ProductId" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

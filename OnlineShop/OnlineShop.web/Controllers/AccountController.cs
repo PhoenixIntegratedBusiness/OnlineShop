@@ -49,14 +49,14 @@ namespace OnlineShop.web.Controllers
                     case ResultRegister.Failed:
                         TempData["AlertType"] = SwalExtentions.Error;
                         TempData["AlertMessage"] = "Operation faild";
-                        return View(model);
+                        break;
 
 
                     case ResultRegister.EmailExists:
                         //ModelState.AddModelError("Email", "Email is duplicate");
                         TempData["AlertType"] = SwalExtentions.Error;
                         TempData["AlertMessage"] = "Email already exists.";
-                        return View(model);
+                        break;
                     default:
                         break;
                 }

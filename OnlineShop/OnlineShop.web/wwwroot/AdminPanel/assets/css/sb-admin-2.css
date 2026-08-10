@@ -106,11 +106,17 @@ address {
   line-height: inherit;
 }
 
+.img-thumb100{
+    width:100px;
+    height:100px;
+}
+
+
 ol,
 ul,
 dl {
-  margin-top: 0;
-  margin-bottom: 1rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
 }
 
 ol ol,

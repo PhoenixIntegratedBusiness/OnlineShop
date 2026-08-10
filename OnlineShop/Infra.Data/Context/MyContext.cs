@@ -19,6 +19,7 @@ namespace Infra.Data.Context
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserInRole> userInRoles { get; set; }
+        public DbSet<Tags> Tags {  get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
