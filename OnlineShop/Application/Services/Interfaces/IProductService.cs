@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Application.Enums.Product;
+using Domain.ViewModel.ProductViewModel;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,5 +11,8 @@ namespace Application.Services.Interfaces
 {
     public interface IProductService
     {
+        Task<List<ProductViewModel>> GetAllProductsAsync();
+        Task<CreateProductResult> CreateProductAsync(CreateProductViewModel model, IFormFile ImgUpload, IFormFile[] Gimgupload, string Tags);
+       
     }
 }

@@ -1,0 +1,101 @@
+﻿@using Domain.ViewModel.ProductViewModel
+@model CreateProductViewModel
+
+<section class="border-radius mb-4">
+
+    <article>
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-9 col-sm-8 col-12">
+                    <div class="text-center mb-4" style="margin-top:17%">
+                        <h3>Create New Product</h3>
+                    </div>
+                    <form asp-action="CreateProduct" asp-controller="Product" method="post" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <label asp-for="Title"></label>
+                            <input asp-for="Title" class="form-control" placeholder="Product Title">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group ">
+                            <label asp-for="Price"></label>
+                            <input asp-for="Price" class="form-control" placeholder="Price">
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group ">
+                            <label asp-for="ImageName"></label>
+                            <img src="~/Images/Product/nophoto.png" style="width:150px;height:150px" id="impPrev" />
+                            <input type="file" name="ImgUpload" onchange="ShowPreview(this)" value="nophoto.png" multiple="false" />
+                            <span asp-validation-for="ImageName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="GroupId"></label>
+                            <select asp-for="GroupId" asp-items="@(ViewData["GroupId"] as SelectList)" class="form-control">
+                                <option value="">Select Product Group</option>
+                            </select>
+                            <span asp-validation-for="GroupId" class="text-danger"></span>
+                        </div>
+
+                        @* <div class="form-group">
+                            <label asp-for="GroupId" class="control-label"></label>
+                            <select asp-for="GroupId" class="form-control" asp-items="ViewBag.GroupId">
+                                 <option value="">Select Product Group</option>
+                            </select>
+                        </div> *@
+
+
+                        <div class="form-group">
+                            <label asp-for="Summery"></label>
+                            <textarea asp-for="Summery" class="form-control" placeholder="Summery"></textarea>
+                            <span asp-validation-for="Summery" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Description"></label>
+                            <textarea asp-for="Description" class="form-control" name="Description" placeholder="Description"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label asp-for="Tags"></label>
+                            <textarea asp-for="Tags" class="form-control" placeholder="Enter your keywords separated by -"></textarea>
+                            <span asp-validation-for="Tags" class="text-danger"></span>
+                        </div>
+
+                        <hr />
+
+                   
+                        <fieldset id="ShowGallery">
+                            <legend>انتخاب تصاویر گالری محصول:</legend>
+                            <div style="margin: 5px 5px 5px 5px; ">
+                                <input type="file" name="Gimgupload" multiple="true" id="fileupload" /><br />
+                                <div id="dvPreview"></div>
+                            </div>
+                        </fieldset>
+
+                        <br />
+
+                        <input type="submit" value="Create" class="btn btn-success mb-4">
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </article>
+</section>
+
+
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('Description');
+    </script>
+}

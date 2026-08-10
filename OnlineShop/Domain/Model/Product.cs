@@ -12,9 +12,9 @@ namespace Domain.Model
     {
        
         public int ProductId { get; set; }
-        public  int GroupId { get; set; }
+        public int GroupId { get; set; }
         [ForeignKey("GroupId")]
-        public ProductGroup ? ProductGroup { get; set; }
+        public ProductGroup? ProductGroup { get; set; }
 
         [Display(Name = "عنوان محصول")]
         [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
@@ -29,16 +29,11 @@ namespace Domain.Model
         [Display(Name = "خلاصه")]
         public string? Summery { get; set; }
 
-
         [Display(Name = "توضیحات")]
         public string? Description { get; set; }
-
-
-        [Display(Name = "کلمات کلیدی")]
-        public string? Tags { get; set; }
-
-
-        public List<ProductGallery> ProductGallery { get; set; }
+        public List<ProductGallery> ProductGallery { get; set; }= new List<ProductGallery>();
+        public List<Tags> Tags { get; set; }= new List<Tags>();
+        
 
     }
 }
