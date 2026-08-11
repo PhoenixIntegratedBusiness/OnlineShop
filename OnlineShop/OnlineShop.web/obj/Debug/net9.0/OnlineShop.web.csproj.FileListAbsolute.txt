@@ -3759,3 +3759,4 @@ E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\OnlineShop.web.pdb
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\OnlineShop.web.genruntimeconfig.cache
 E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\obj\Debug\net9.0\ref\OnlineShop.web.dll
+E:\02-Learning\Test Proj\OnlineShop Project\OnlineShop\OnlineShop.web\bin\Debug\net9.0\AutoMapper.dll

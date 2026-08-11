@@ -1,8 +1,10 @@
 ﻿using Application.Enums.Product;
 using Application.Services.Interfaces;
+using AutoMapper;
 using Azure;
 using Domain.Interfaces;
 using Domain.Model;
+using Domain.ViewModel.ProductGroupViewModel;
 using Domain.ViewModel.ProductViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,10 +28,43 @@ namespace Application.Services.Implementation
     public class ProductService : IProductService
     {
         private readonly IProductRepository _productRepository;
-        public ProductService(IProductRepository productRepository)
+        private readonly IMapper _mapper;
+
+        public ProductService(IProductRepository productRepository, IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
+
+
+        #region DeleteProductById
+        public async Task DeleteProductById(int id)
+        {
+            var product = await _productRepository.GetProductByIdAsync(id);
+            product.isDelete = true;
+            foreach (var gallery in product.ProductGallery)
+            {
+                gallery.isDelete = true;
+            }
+
+            foreach (var tag in product.Tags)
+            {
+                tag.isDelete = true;
+            }
+
+            await _productRepository.SavechangeAsync();
+
+        }
+        #endregion
+
+        #region FindDeleteProduct
+        public async Task<DeleteProductViewModel> FindDeleteProduct(int id)
+        {
+            var res = await _productRepository.GetProductByIdAsync(id);
+            return _mapper.Map<DeleteProductViewModel>(res);
+        }
+
+        #endregion
 
         #region UpdateProductAsync
         public async Task<UpdateProductResult> UpdateProductAsync(EditProductviewModel model, IFormFile ImgUpload, IFormFile[] Gimgupload, string TagsText)
@@ -146,33 +181,34 @@ namespace Application.Services.Implementation
                 }
                 await _productRepository.DeleteGallaryImgByIdAsync(id);
                 await _productRepository.SavechangeAsync();
-
             }
         }
         #endregion
 
         #region GetProductByIdAsync    
-        public async Task<EditProductviewModel> GetProductByIdAsync(int id)
+        public async Task<EditProductviewModel> EditProductByIdAsync(int id)
         {
             var res = await _productRepository.GetProductByIdAsync(id);
 
-            return new EditProductviewModel()
-            {
-                ImageName = res.ImageName,
-                ProductId = res.ProductId,
-                CreateDate = res.CreateDate,
-                Description = res.Description,
-                GroupId = res.GroupId,
-                isDelete = res.isDelete,
-                Price = res.Price,
-                ProductGallery = res.ProductGallery,
-                Summery = res.Summery,
-                Tags = res.Tags,
-                Title = res.Title
-            };
+            #region
+            //return new EditProductviewModel()
+            //{
+            //    ImageName = res.ImageName,
+            //    ProductId = res.ProductId,
+            //    CreateDate = res.CreateDate,
+            //    Description = res.Description,
+            //    GroupId = res.GroupId,
+            //    isDelete = res.isDelete,
+            //    Price = res.Price,
+            //    ProductGallery = res.ProductGallery,
+            //    Summery = res.Summery,
+            //    Tags = res.Tags,
+            //    Title = res.Title
+            //};
+            #endregion
 
+            return _mapper.Map<EditProductviewModel>(res);         
         }
-
         #endregion
 
         #region CreateProductAsync
@@ -199,18 +235,25 @@ namespace Application.Services.Implementation
                 return CreateProductResult.imageformatnotvalid;
             }
             #endregion
+            #region
+            //var product = new Product()
+            //{
+            //    GroupId = model.GroupId,
+            //    Title = model.Title,
+            //    CreateDate = DateTime.Now,
+            //    Description = model.Description,
+            //    isDelete = false,
+            //    Price = model.Price,
+            //    Summery = model.Summery,
+            //    ImageName = image,
+            //};
+            #endregion
+            var product = _mapper.Map<Product>(model);
+            product.CreateDate = DateTime.Now;
+            product.isDelete = false;
+            product.ImageName = image;
 
-            var product = new Product()
-            {
-                GroupId = model.GroupId,
-                Title = model.Title,
-                CreateDate = DateTime.Now,
-                Description = model.Description,
-                isDelete = false,
-                Price = model.Price,
-                Summery = model.Summery,
-                ImageName = image,
-            };
+
 
             #region save tags
             if (!string.IsNullOrEmpty(Tags))
@@ -262,20 +305,9 @@ namespace Application.Services.Implementation
 
             if (product != null && product.Any())
             {
-                return product.Select(product => new ProductViewModel()
-                {
-                    Title = product.Title,
-                    Description = product.Description,
-                    Summery = product.Summery,
-                    ProductGroup = product.ProductGroup,
-                    CreateDate = product.CreateDate,
-                    GroupId = product.GroupId,
-                    ImageName = product.ImageName,
-                    isDelete = product.isDelete,
-                    ProductId = product.ProductId
-                }).ToList();
+                return _mapper.Map<List<ProductViewModel>>(product);
             }
-            return null;
+            return new List<ProductViewModel>();
         }
         #endregion
     }

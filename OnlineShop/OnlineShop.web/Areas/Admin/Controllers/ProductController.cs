@@ -84,7 +84,7 @@ namespace OnlineShop.web.Areas.Admin.Controllers
         [Route("EditProduct")]
         public async Task<IActionResult> EditProduct(int PId)
         {
-            var product = await productService.GetProductByIdAsync(PId);
+            var product = await productService.EditProductByIdAsync(PId);
             ViewData["GroupId"] = new SelectList(await productGroupservice.GetProductGroupsAsync(), "GroupId", "GroupTitle", product.GroupId);
             if (product == null)
             {
@@ -97,7 +97,7 @@ namespace OnlineShop.web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EditProduct(EditProductviewModel model, IFormFile? ImgUpload, IFormFile[]? Gimgupload, string TagsText)
         {
-            if (!ModelState.IsValid) 
+            if (!ModelState.IsValid)
             {
                 foreach (var item in ModelState)
                 {
@@ -117,7 +117,7 @@ namespace OnlineShop.web.Areas.Admin.Controllers
                     TempData["AlertType"] = SwalExtentions.Success;
                     TempData["AlertMessage"] = "Update Product Operation has been done successfully";
                     return RedirectToAction(nameof(ProductList));
-                    
+
                 case UpdateProductResult.Failure:
                     TempData["AlertType"] = SwalExtentions.Error;
                     TempData["AlertMessage"] = "Operation faild";
@@ -134,7 +134,7 @@ namespace OnlineShop.web.Areas.Admin.Controllers
         }
         #endregion
 
-
+        #region DeleteProductGallary
         [HttpGet]
         public async Task<IActionResult> DeleteProductGallary(int id)
         {
@@ -142,5 +142,32 @@ namespace OnlineShop.web.Areas.Admin.Controllers
 
             return Ok();
         }
+        #endregion
+
+        #region Deleteproduct
+        [Route("Deleteproduct")]
+        public async Task<IActionResult> Deleteproduct(int PId)
+        {
+            var product = await productService.FindDeleteProduct(PId);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            ViewData["GroupId"] = new SelectList(await productGroupservice.GetProductGroupsAsync(), "GroupId", "GroupTitle", product.GroupId);
+            return View(product);
+        }
+
+
+
+        [HttpPost("DeleteproductConfirm")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteproductConfirm(int PId)
+        {
+            await productService.DeleteProductById(PId);
+            TempData["AlertType"] = SwalExtentions.Success;
+            TempData["AlertMessage"] = "delete Product Operation has been done successfully";
+            return RedirectToAction(nameof(ProductList));
+        }
+        #endregion
     }
 }

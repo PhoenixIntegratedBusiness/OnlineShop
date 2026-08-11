@@ -1,7 +1,9 @@
+using Application.Mapping;
 using Infra.Data.Context;
 using Infra.IOC;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -35,6 +37,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
    );
 
 #endregion
+builder.Services.AddAutoMapper(cfg =>
+{
+    cfg.AddMaps(typeof(ProductProfile).Assembly);
+});
 
 var app = builder.Build();
 // Add services to the container.
