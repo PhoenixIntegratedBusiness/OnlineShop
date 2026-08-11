@@ -51,7 +51,7 @@ namespace Infra.Data.Repositories
         }
         #endregion
 
-        #region GetProductByIdAsync
+        #region FindImgGallaryAsync
         public async Task<string?> FindImgGallaryAsync(int id)
         {
             var gallary = await _context.ProductGallery.FindAsync(id);

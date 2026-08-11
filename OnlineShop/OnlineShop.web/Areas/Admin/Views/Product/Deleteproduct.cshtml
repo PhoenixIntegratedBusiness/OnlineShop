@@ -1,0 +1,91 @@
+﻿@model Domain.ViewModel.ProductViewModel.DeleteProductViewModel
+
+@{
+    ViewData["Title"] = "Deleteproduct";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminPanelLayout.cshtml";
+}
+
+<h4>Delete product</h4>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImageName)
+        </dt>
+        <dd class="col-sm-10">
+            <img src="/Images/Product/ProductImg/@Model.ImageName" class="img-thumbnail" style="width:200px;height:180px" />
+        </dd>
+
+        <hr />
+        <dt class="col-sm-2">
+            Group Name
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ProductGroup.GroupTitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Summery)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Summery)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.Raw(Model.Description)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CreateDate)
+        </dd>
+
+
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tags)
+        </dt>
+        <dd class="col-sm-10">
+            @string.Join("-", Model.Tags.Where(t => t.ProductId == Model.ProductId).Select(t => t.TagName))
+        </dd>
+        <hr />
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ProductGallery)
+        </dt>
+
+        <dd class="col-sm-10">
+            @{
+                var list = Model.ProductGallery.Where(t => t.ProductId == Model.ProductId).Select(u => u.ImageName);
+                foreach(var item in list)
+                {
+                    <img src="/Images/product/ProductGallary/@item" style="width:100px;height:100px" />
+                }
+
+            }
+        </dd>
+
+    </dl>
+
+    <form asp-action="DeleteproductConfirm" asp-route-PId="@Model.ProductId" asp-controller="Product" method="post">
+        <input type="hidden" asp-for="ProductId" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="ProductList" class="btn btn-info">Back to List</a>
+    </form>
+</div>
