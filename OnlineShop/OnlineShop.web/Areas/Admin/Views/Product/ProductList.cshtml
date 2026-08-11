@@ -52,9 +52,9 @@
                     @Html.DisplayFor(modelItem => item.isDelete)
                 </td>
                 <td>
-                    <a asp-action="EditUserRole" asp-controller="ManageUser" asp-route-UserId="@item.ProductId" class="btn btn-warning">Edit</a> |
-                    <a asp-action="UserDetails" asp-controller="ManageUser" asp-route-UserId="@item.ProductId" class="btn btn-info">Details</a> |
-                    <a asp-action="DeleteUser" asp-controller="ManageUser" asp-route-UserId="@item.ProductId" class="btn btn-danger">Delete</a>
+                    <a asp-action="EditProduct" asp-controller="Product" asp-route-PId="@item.ProductId" class="btn btn-warning">Edit</a> |
+                    <a asp-action="ProductDetails" asp-controller="Product" asp-route-PId="@item.ProductId" class="btn btn-info">Details</a> |
+                    <a asp-action="DeleteProduct" asp-controller="Product" asp-route-PId="@item.ProductId" class="btn btn-danger">Delete</a>
                 </td>
             </tr>
         }

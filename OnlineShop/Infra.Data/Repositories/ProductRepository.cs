@@ -20,6 +20,70 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
+        #region IsTitleExistAsync
+        public async Task<bool> IsTitleExistAsync(string title, int productId)
+        {
+            return await _context.Products
+                .AnyAsync(x => x.Title == title && x.ProductId != productId);
+        }
+        #endregion
+
+        #region UpdateProduct
+        public void UpdateProduct(Product product)
+        {
+            _context.Products.Update(product);
+        }
+        #endregion
+
+        #region GetAllTagsByIdAsync
+        public async Task GetAllTagsByIdAsync(int id)
+        {
+            var res = await _context.Tags.Where(u => u.ProductId == id).ToListAsync();
+            _context.Tags.RemoveRange(res);
+
+        }
+        #endregion
+
+        #region listproductGallery
+        public async Task<List<ProductGallery?>> GetAllProuctGalleriesAsync(int id)
+        {
+            return await _context.ProductGallery.Where(t => t.ProductId == id).ToListAsync();
+        }
+        #endregion
+
+        #region GetProductByIdAsync
+        public async Task<string?> FindImgGallaryAsync(int id)
+        {
+            var gallary = await _context.ProductGallery.FindAsync(id);
+            return gallary?.ImageName;     
+
+        }
+        #endregion
+
+        #region DeleteGallaryImgByIdAsync
+        public async Task<bool?> DeleteGallaryImgByIdAsync(int id)
+        {
+            var gid = await _context.ProductGallery.FindAsync(id);
+            if (gid != null)
+            {
+                _context.ProductGallery.Remove(gid);
+                return true;
+            }
+            else return false;
+        }
+        #endregion
+
+        #region GetProductByIdAsync
+        public async Task<Product?> GetProductByIdAsync(int id)
+        {
+            return await _context.Products
+                                         .Include(p => p.Tags)
+                                         .Include(p => p.ProductGallery)
+                                         .Include(p => p.ProductGroup)
+                                         .FirstOrDefaultAsync(p => p.ProductId == id);
+        }
+        #endregion
+
         #region AddProductAsync
         public async Task<bool> AddProductAsync(Product product)
         {
@@ -52,7 +116,7 @@ namespace Infra.Data.Repositories
         #region SavechangeAsync
         public async Task SavechangeAsync()
         {
-           await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
         #endregion
 
