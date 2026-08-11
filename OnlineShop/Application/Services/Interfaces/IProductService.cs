@@ -13,6 +13,8 @@ namespace Application.Services.Interfaces
     {
         Task<List<ProductViewModel>> GetAllProductsAsync();
         Task<CreateProductResult> CreateProductAsync(CreateProductViewModel model, IFormFile ImgUpload, IFormFile[] Gimgupload, string Tags);
-       
+        Task<EditProductviewModel> GetProductByIdAsync(int id);
+        Task DeleteGallaryImgByIdAsync(int id);
+        Task<UpdateProductResult> UpdateProductAsync(EditProductviewModel model, IFormFile ImgUpload, IFormFile[] Gimgupload, string TagsText);
     }
 }

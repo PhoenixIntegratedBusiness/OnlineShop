@@ -14,5 +14,13 @@ namespace Domain.Interfaces
         Task<bool> ProductExistsAsync(int id, string title);
         Task<bool> AddProductAsync(Product product);
         Task SavechangeAsync();
+        Task<Product?> GetProductByIdAsync(int id);
+        Task<bool?> DeleteGallaryImgByIdAsync(int id);
+        Task<string?> FindImgGallaryAsync(int id);
+        Task<List<ProductGallery?>> GetAllProuctGalleriesAsync(int id);
+        Task GetAllTagsByIdAsync(int id);
+        void UpdateProduct(Product product);
+        Task<bool> IsTitleExistAsync(string title, int productId);
+
     }
 }
