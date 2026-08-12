@@ -1,0 +1,9 @@
+﻿@using Domain.ViewModel.ProductViewModel
+@model IEnumerable<ProductCardViewModel>
+
+<div class="row g-4">
+    @foreach (var item in Model)
+    {
+        <partial name="_ProductItemCard" model="item" />
+    }
+</div>

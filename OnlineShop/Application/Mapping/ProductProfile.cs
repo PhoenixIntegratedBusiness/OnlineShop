@@ -31,6 +31,12 @@ namespace Application.Mapping
 
             CreateMap<DeleteProductViewModel, Product>();
             CreateMap<Product, DeleteProductViewModel>();
+
+            CreateMap<Product, ProductCardViewModel>();
+            CreateMap<Product, AllProductDetailviewModel>();
+
+            CreateMap<Product, AllProductDetailviewModel>();
+
         }
     }
 }

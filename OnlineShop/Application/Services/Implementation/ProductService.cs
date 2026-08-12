@@ -36,6 +36,29 @@ namespace Application.Services.Implementation
             _mapper = mapper;
         }
 
+        #region
+        public async Task<AllProductDetailviewModel> GetProductByIdAsync(int id)
+        {
+            var product=await _productRepository.GetProductByIdAsync(id);
+            return _mapper.Map<AllProductDetailviewModel>(product);
+        }
+        #endregion
+
+        #region GetProductsByGruoupIdAsync
+        public async Task<List<ProductCardViewModel>> GetProductsByGruoupIdAsync(int id)
+        {
+            var res = await _productRepository.GetProductsByGruoupIdAsync(id);
+            return _mapper.Map<List<ProductCardViewModel>>(res);
+        }
+        #endregion
+
+        #region GetAllProductCardItemAsync
+        public async Task<List<ProductCardViewModel>> GetAllProductCardItemAsync()
+        {
+            var productlist = await _productRepository.GetAllProductsAsync();
+            return _mapper.Map<List<ProductCardViewModel>>(productlist);
+        }
+        #endregion
 
         #region DeleteProductById
         public async Task DeleteProductById(int id)
@@ -207,7 +230,7 @@ namespace Application.Services.Implementation
             //};
             #endregion
 
-            return _mapper.Map<EditProductviewModel>(res);         
+            return _mapper.Map<EditProductviewModel>(res);
         }
         #endregion
 

@@ -20,6 +20,16 @@ namespace Infra.Data.Repositories
             _context = context;
         }
 
+
+        #region GetProductsByGruoupIdAsync
+        public async Task<List<Product>> GetProductsByGruoupIdAsync(int id)
+        {
+            return await _context.Products.Include(u=>u.ProductGroup).Include(u=>u.Tags).Where(u=>u.GroupId == id && u.isDelete==false).ToListAsync();
+        }
+
+        #endregion
+
+
         #region IsTitleExistAsync
         public async Task<bool> IsTitleExistAsync(string title, int productId)
         {
@@ -55,7 +65,7 @@ namespace Infra.Data.Repositories
         public async Task<string?> FindImgGallaryAsync(int id)
         {
             var gallary = await _context.ProductGallery.FindAsync(id);
-            return gallary?.ImageName;     
+            return gallary?.ImageName;
 
         }
         #endregion

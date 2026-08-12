@@ -1,0 +1,21 @@
+﻿@using Domain.ViewModel.ProductGroupViewModel
+@model IEnumerable<ProductGroupViewModel>
+
+@{
+    int num=-1;
+    string name = "AllProducts";
+}
+
+<ul class="list-unstyled">
+    <li class="mb-2">
+        <a href="/Group/@num/@name" class="text-dark">All Products</a>
+    </li>
+    @foreach (var item in Model)
+    {
+        <li class="mb-2">
+                 <a href="/Group/@item.GroupId/@item.GroupTitle" class="text-dark"> 
+                @item.GroupTitle
+            </a>
+        </li>
+    }
+</ul>
