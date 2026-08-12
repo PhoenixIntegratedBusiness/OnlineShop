@@ -1,0 +1,89 @@
+﻿@model Domain.ViewModel.ProductViewModel.AllProductDetailviewModel
+
+@{
+    ViewData["Title"] = "ProductDetails";
+}
+
+
+<div class="container  py-5" style="margin-top:5%">
+    <div class="tab-class">
+       
+        <div class="row">
+            <div class="col-md-10">
+                <div class="tab-content col-lg-12">
+
+                    <div>
+                        <h4>@Model.Title Details</h4>
+                        <hr />
+                        <dl class="row">
+
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.ImageName)
+                            </dt>
+                            <dd class="col-sm-10">
+                                <img src="/Images/Product/ProductImg/@Model.ImageName" class="img-thumb100 img-thumbnail"/>
+                            </dd>
+
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.GroupId)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.GroupId)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Title)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Title)
+                            </dd>
+                          
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Price)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Price)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Summery)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => model.Summery)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Description)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.Raw(Model.Description)
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="sidebar-box mb-4">
+                    <h6 class="mb-3" style="color:#81C408">Product Categories</h6>
+                    @await Component.InvokeAsync("ProductGroup")
+                </div>
+
+                <!-- Cart -->
+                <partial name="_GroupCardSideBar" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

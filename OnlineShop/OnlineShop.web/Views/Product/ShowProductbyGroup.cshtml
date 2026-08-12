@@ -1,0 +1,51 @@
+﻿@using Domain.ViewModel.ProductViewModel
+@model IEnumerable<ProductCardViewModel>
+
+<div class="container  py-5" style="margin-top:5%">
+    <div class="row g-4">
+        <div class="col-lg-10">
+            <div class="tab-content col-lg-12">
+
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        <div class="col-lg-12">
+                            <div id="productList" class="row g-4">
+                                @{
+                                    var productlist = ViewData["Productlist"] as IEnumerable<ProductCardViewModel>;
+                                }
+
+                                @if (productlist != null && productlist.Any())
+                                {
+                                    foreach (var item in productlist)
+                                    {
+                                        <partial name="_ProductItemCard" model="item" />
+                                    }
+                                }
+                                else
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                        <partial name="_ProductItemCard" model="item" />
+                                    }
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+            <div class="sidebar-box mb-4">
+                <h6 class="mb-3" style="color:#81C408">Product Categories</h6>
+                @await Component.InvokeAsync("ProductGroup")
+            </div>
+
+            <!-- Cart -->
+            <partial name="_GroupCardSideBar" />
+        </div>
+    </div>
+</div>
+
+
+

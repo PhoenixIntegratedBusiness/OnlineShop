@@ -105,7 +105,7 @@ namespace Application.Services.Implementation
                 GroupTitle = item.GroupTitle,
                 isDelete = item.isDelete
             }).ToList();
-        }
+        }    
         #endregion
     }
 }

@@ -21,6 +21,7 @@ namespace Domain.Interfaces
         Task GetAllTagsByIdAsync(int id);
         void UpdateProduct(Product product);
         Task<bool> IsTitleExistAsync(string title, int productId);
+        Task<List<Product>> GetProductsByGruoupIdAsync(int id);
 
     }
 }

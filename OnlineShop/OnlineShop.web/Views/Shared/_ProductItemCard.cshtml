@@ -1,0 +1,53 @@
+﻿@using Domain.ViewModel.ProductViewModel
+@model ProductCardViewModel
+
+<div class="col-md-6 col-lg-4 col-xl-3 d-flex">
+    <div class="rounded position-relative fruite-item w-100 d-flex flex-column">
+
+        <div class="fruite-img">
+            <img src="/Images/Product/ProductImg/@Model.ImageName"class="img-fluid w-100 rounded-top"alt="@Model.Title">
+        </div>
+
+        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"style="top: 10px; left: 10px;">
+            Fruits
+        </div>
+
+        <div class="p-3 border border-secondary border-top-0 rounded-bottom d-flex flex-column flex-grow-1">
+
+            <h4>@Model.Title</h4>
+
+            <p class="product-summary"> @Model.Summery </p>
+
+            <div class="d-flex justify-content-between flex-lg-wrap mt-auto">
+
+                <div class="mt-auto">
+
+                    <!-- Price -->
+                    <div class="d-flex align-items-center mb-2">
+                        <span class="fw-bold text-dark me-2">Price:</span>
+                        <span class="fw-bold text-dark">$@Model.Price</span>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="d-flex gap-2">
+
+                        <a href="/ProductDetails/@Model.ProductId"
+                           class="btn btn-sm border border-secondary rounded-pill px-3 text-primary">
+                            <i class="fa fa-list me-1"></i>
+                            Detail
+                        </a>
+
+                        <a href="#"
+                           class="btn btn-sm border border-secondary rounded-pill px-3 text-primary">
+                            <i class="fa fa-shopping-bag me-1"></i>
+                            Add cart
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

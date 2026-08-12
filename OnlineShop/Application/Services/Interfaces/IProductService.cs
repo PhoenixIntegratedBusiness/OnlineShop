@@ -18,5 +18,8 @@ namespace Application.Services.Interfaces
         Task<UpdateProductResult> UpdateProductAsync(EditProductviewModel model, IFormFile ImgUpload, IFormFile[] Gimgupload, string TagsText);
         Task<DeleteProductViewModel> FindDeleteProduct(int id);    
         Task DeleteProductById(int id);
+        Task<List<ProductCardViewModel>> GetAllProductCardItemAsync();
+        Task<List<ProductCardViewModel>> GetProductsByGruoupIdAsync(int id);
+        Task<AllProductDetailviewModel> GetProductByIdAsync(int id);
     }
 }
