@@ -1,4 +1,4 @@
-
+﻿
 /*** Spinner Start ***/
 #spinner {
     opacity: 0;
@@ -91,7 +91,7 @@
 }
 
     .topbar .top-info {
-        font-size: 15px;
+        font-size: 17px;
         line-height: 0;
         letter-spacing: 1px;
         display: flex;
@@ -99,7 +99,7 @@
     }
 
     .topbar .top-link {
-        font-size: 15px;
+        font-size: 17px;
         line-height: 0;
         letter-spacing: 1px;
         display: flex;
@@ -123,7 +123,7 @@
 /*** Navbar Start ***/
 .navbar .navbar-nav .nav-link {
     padding: 10px 15px;
-    font-size: 16px;
+    font-size: 15px;
     transition: .5s;
 }
 
@@ -143,7 +143,7 @@
         border: none;
         content: "\f107";
         font-family: "Font Awesome 5 Free";
-        font-weight: 700;
+        font-weight: 600;
         vertical-align: middle;
         margin-left: 8px;
     }
@@ -212,7 +212,7 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        font-size: 25px;
+        font-size: 22px;
         background: linear-gradient(rgba(255, 181, 36, 0.7), rgba(255, 181, 36, 0.7));
     }
 
@@ -270,7 +270,7 @@
 
     .sidebar-box h4 {
         color: var(--bs-primary);
-        font-size: 14px;
+        font-size: 15px;
     }
 
     .sidebar-box a {
@@ -495,14 +495,13 @@
     -webkit-box-orient: vertical;
     overflow-y: auto;
     overflow-x: hidden;
-
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE/Edge */
 }
 
-.product-summary::-webkit-scrollbar {
-   display: none; /* Chrome, Safari, Edge */
-}
+    .product-summary::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, Edge */
+    }
 
 .fruite .fruite-item {
     height: 100%;
@@ -518,7 +517,21 @@
     .fruite .fruite-item .product-summary {
         flex-grow: 1;
     }
-    /*----------------------------------*/
+
+/*---------*/
+
+.fruite .fruite-item h5 {
+    font-size: 18px;
+}
+
+.fruite .fruite-item p {
+    font-size: 14px;
+}
+
+.fruite .fruite-item .btn {
+    font-size: 14px;
+}
+/*----------------------------------*/
 
 .product-gallery {
     padding-right: 0
@@ -542,4 +555,140 @@
     display: block;
     width: 100%;
     max-width: 100%
+}
+/*----------------------------*/
+.sidebar-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.cart-items {
+    max-height: 350px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    /* مخفی کردن نوار اسکرول */
+    scrollbar-width: none;
+}
+
+    .cart-items::-webkit-scrollbar {
+        display: none;
+    }
+
+.sidebar-box .btn {
+    flex-shrink: 0;
+}
+/*-------------------------------*/
+
+.product-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+/*    -------------------------------*/
+.product-details {
+    font-size: 16px;
+}
+
+    .product-details h4 {
+        font-size: 22px;
+    }
+
+    .product-details dt {
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .product-details dd {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+.product-tag {
+    font-size: 15px;
+}
+/*---------------------*/
+.product-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.product-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    font-size: 17px;
+    border: 1px solid #81C408;
+    border-radius: 15px;
+    color: #555;
+    background-color: white;
+    text-decoration: none;
+}
+
+    .product-tag:hover {
+        color: #81C408;
+        border-color: #81C408;
+    }
+/*    ----------------------*/
+
+.product-details .img-thumb60 {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    display: block;
+}
+
+/*---------------------------*/
+.product-gallery-images {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.gallery-image {
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+    .gallery-image.main-image {
+        width: 250px;
+        height: 250px;
+    }
+
+    .gallery-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .gallery-image:hover img {
+        transform: scale(1.15);
+    }
+    /*------------------------------------*/
+.product-card-tags .product-tag {
+    padding: 3px 7px;
+    font-size: 11px;
+    border-radius: 10px;
+}
+
+    .product-card-tags .product-tag i {
+        font-size: 9px;
+    }
+
+.product-card-tags {
+    gap: 4px;
 }

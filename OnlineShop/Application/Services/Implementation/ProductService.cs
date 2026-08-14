@@ -36,10 +36,26 @@ namespace Application.Services.Implementation
             _mapper = mapper;
         }
 
-        #region
+        #region SearchProductKeyAsync
+        public async Task<List<Product>> SearchProductKeyAsync(string key)
+        {
+            var res = await _productRepository.GetAllProductsAsync();
+
+            return res.Where(p => p.Tags.Any(u => u.TagName.Contains(key)) ||
+                                 p.Title.Contains(key) ||
+                                  (p.ProductGroup != null &&
+                                   p.ProductGroup.GroupTitle != null &&
+                                   p.ProductGroup.GroupTitle.Contains(key, StringComparison.OrdinalIgnoreCase)) ||
+                                 p.Summery.Contains(key)
+                             )
+                .ToList();
+        }
+        #endregion
+
+        #region GetProductByIdAsync
         public async Task<AllProductDetailviewModel> GetProductByIdAsync(int id)
         {
-            var product=await _productRepository.GetProductByIdAsync(id);
+            var product = await _productRepository.GetProductByIdAsync(id);
             return _mapper.Map<AllProductDetailviewModel>(product);
         }
         #endregion
@@ -332,6 +348,8 @@ namespace Application.Services.Implementation
             }
             return new List<ProductViewModel>();
         }
+
+
         #endregion
     }
 }

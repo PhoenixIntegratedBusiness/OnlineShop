@@ -23,5 +23,7 @@ namespace OnlineShop.web.Controllers
             return View(product);
         }
 
+      
+
     }
 }

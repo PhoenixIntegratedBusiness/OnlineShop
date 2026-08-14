@@ -1,0 +1,100 @@
+﻿@using Domain.Model
+@using Domain.ViewModel.ProductGroupViewModel
+
+@model IEnumerable<Product>
+
+<div class="container-fluid" style="padding:8% 8% 1% 8%">
+    <div class="row g-4">
+        <h2>Search Result :</h2>
+        <!-- Products -->
+        <div class="col-md-10">
+            <div class="row g-3">
+                @foreach (var item in Model)
+                {
+                    <div class="col-sm-6 col-lg-4 col-xl-3 d-flex">
+                        <div class="rounded position-relative fruite-item w-100 d-flex flex-column">
+
+                            <!-- Image -->
+                            <div class="fruite-img product-image">
+                                <img src="/Images/Product/ProductImg/@item.ImageName"
+                                     class="w-100 rounded-top"
+                                     alt="@item.Title">
+                            </div>
+
+                            <!-- Product Info -->
+                            <div class="p-3 border border-secondary border-top-0 rounded-bottom d-flex flex-column flex-grow-1">
+
+                                <h5 class="mb-2">
+                                    @item.Title
+                                </h5>
+
+                                <p class="product-summary mb-2">
+                                    @item.Summery
+                                </p>
+
+                                <!-- Tags -->
+                                @if (item.Tags != null && item.Tags.Any())
+                                {
+                                    <div class="product-tags product-card-tags mb-3">
+                                        @foreach (var tag in item.Tags)
+                                        {
+                                            <a asp-controller="Product" asp-action="SearchProductKey" asp-route-q="@tag.TagName" 
+                                               class="product-tag">
+                                                <i class="fa fa-tag me-1"></i>
+                                                @tag.TagName
+                                            </a>
+                                        }
+                                    </div>
+                                }
+
+                                <!-- Price -->
+                                <div class="d-flex align-items-center mb-2 mt-auto">
+                                    <span class="fw-bold text-dark me-2">
+                                        Price:
+                                    </span>
+                                    <span class="fw-bold text-dark">
+                                        $@item.Price
+                                    </span>
+                                </div>
+
+                                <!-- Buttons -->
+                                <div class="d-flex gap-2">
+                                    <a href="/ProductDetails/@item.ProductId"
+                                       class="btn btn-sm border border-secondary rounded-pill px-3 text-primary">
+                                        <i class="fa fa-list me-1"></i>
+                                        Detail
+                                    </a>
+
+                                    <a asp-action="AddToCard"
+                                       asp-controller="Order"
+                                       asp-route-id="@item.ProductId"
+                                       class="btn btn-sm border border-secondary rounded-pill px-3 text-primary">
+
+                                        <i class="fa fa-shopping-bag me-1"></i>
+                                        Add cart
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+        </div>
+
+
+        <!-- Sidebar -->
+        <div class="col-md-2">
+            <div class="sidebar-box mb-4">
+                <h6 class="mb-3" style="color:#81C408">
+                    Product Categories
+                </h6>
+                @await Component.InvokeAsync("ProductGroup")
+            </div>
+            @await Component.InvokeAsync("ShopCart")
+        </div>
+
+    </div>
+
+</div>

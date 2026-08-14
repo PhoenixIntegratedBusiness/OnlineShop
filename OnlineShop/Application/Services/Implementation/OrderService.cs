@@ -19,6 +19,9 @@ namespace Application.Services.Implementation
             _orderRepository = orderRepository;
         }
 
+      
+
+
         #region DeleteFromCartAsync
         public async Task DeleteFromCartAsync(int userid, int productid)
         {
@@ -33,7 +36,6 @@ namespace Application.Services.Implementation
             return await _orderRepository.CountShopCardAsync(userid);
         }
         #endregion
-
 
         #region GetCartItemsAsync
         public async Task<Order> GetCartItemsAsync(int userid)
@@ -83,10 +85,10 @@ namespace Application.Services.Implementation
             {
                 detail.Count += 1;
             }
-
             await _orderRepository.SaveChangeAsync();
             return true;
         }
+
         #endregion
     }
 }
