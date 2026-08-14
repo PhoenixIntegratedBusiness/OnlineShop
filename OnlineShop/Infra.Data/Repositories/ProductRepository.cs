@@ -105,7 +105,7 @@ namespace Infra.Data.Repositories
         #region GetAllProductsAsync
         public async Task<List<Product>> GetAllProductsAsync()
         {
-            return await _context.Products.Include(u => u.ProductGroup).ToListAsync();
+            return await _context.Products.Include(u=>u.Tags).Include(u => u.ProductGroup).ToListAsync();
         }
         #endregion
 

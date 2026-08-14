@@ -15,7 +15,7 @@ namespace OnlineShop.web.Controllers
             _orderService = orderService;
         }
 
-        #region
+        #region AddToCard
         [Route("AddToCard")]
         //[Authorize]
         public async Task<IActionResult> AddToCard(int id)
@@ -32,8 +32,6 @@ namespace OnlineShop.web.Controllers
         }
 
         #endregion
-
-
 
         #region CountShopCart
         public async Task<int> CountShopCart()

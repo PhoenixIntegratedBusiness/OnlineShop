@@ -4,13 +4,14 @@
 <div class="col-md-6 col-lg-4 col-xl-3 d-flex">
     <div class="rounded position-relative fruite-item w-100 d-flex flex-column">
 
-        <div class="fruite-img">
+        @* <div class="fruite-img">
             <img src="/Images/Product/ProductImg/@Model.ImageName" class="img-fluid w-100 rounded-top" alt="@Model.Title">
+        </div> *@
+
+        <div class="fruite-img product-image">
+            <img src="/Images/Product/ProductImg/@Model.ImageName"class="w-100 rounded-top" alt="@Model.Title">
         </div>
 
-        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">
-            Fruits
-        </div>
 
         <div class="p-3 border border-secondary border-top-0 rounded-bottom d-flex flex-column flex-grow-1">
 

@@ -2,6 +2,8 @@
 using Application.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using OnlineShop.web.Web.Extentions;
 
 namespace OnlineShop.web.Controllers
 {
@@ -50,6 +52,29 @@ namespace OnlineShop.web.Controllers
         }
         #endregion
 
-      
+
+        #region SearchProductKeyAsync
+        //[Route("SearchProductKey /{q}")]
+        public async Task<IActionResult> SearchProductKey(string q)
+        {
+            if (string.IsNullOrWhiteSpace(q))
+            {
+                TempData["AlertType"] = SwalExtentions.Warning;
+                TempData["AlertMessage"] = "Please enter a keyword.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            var result = await _productService.SearchProductKeyAsync(q);
+            if (!result.Any())
+            {
+                TempData["AlertType"] = SwalExtentions.Warning;
+                TempData["AlertMessage"] = "No product was found for your keyword.";
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(result);
+        }
+        #endregion
+
     }
 }

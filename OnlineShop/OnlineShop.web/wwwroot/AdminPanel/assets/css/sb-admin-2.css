@@ -110,8 +110,14 @@ address {
     width:100px;
     height:100px;
 }
-
-
+.img-thumb80 {
+    width: 80px;
+    height: 80px;
+}
+.img-thumb60 {
+    width: 60px;
+    height: 60px;
+}
 ol,
 ul,
 dl {

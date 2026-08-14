@@ -1,4 +1,5 @@
 ﻿using Application.Enums.Product;
+using Domain.Model;
 using Domain.ViewModel.ProductViewModel;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -21,5 +22,6 @@ namespace Application.Services.Interfaces
         Task<List<ProductCardViewModel>> GetAllProductCardItemAsync();
         Task<List<ProductCardViewModel>> GetProductsByGruoupIdAsync(int id);
         Task<AllProductDetailviewModel> GetProductByIdAsync(int id);
+        Task<List<Product>> SearchProductKeyAsync(string keyword);
     }
 }
