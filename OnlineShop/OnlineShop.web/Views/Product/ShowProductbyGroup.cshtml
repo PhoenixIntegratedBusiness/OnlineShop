@@ -2,65 +2,75 @@
 @model IEnumerable<ProductCardViewModel>
 
 <div class="container-fluid" style="padding:6%;">
-        <div class="row g-4">
+
+    <div class="row g-4">
+
+        <!-- Products + Pagination -->
+        <div class="col-lg-10">
 
             <!-- Products -->
-            <div class="col-lg-10">
-                <div class="tab-content">
-                    <div id="tab-1" class="tab-pane fade show p-0 active">
-                        <div class="row g-4">
-                            <div class="col-lg-12">
+            <div class="row g-4">
 
-                                <div id="productList" class="row g-4">
-
-                                    @{
-                                        var productlist =
-                                        ViewData["Productlist"] as IEnumerable<ProductCardViewModel>;
-                                    }
-
-                                    @if (productlist != null && productlist.Any())
-                                    {
-                                        foreach (var item in productlist)
-                                        {
-                                            <partial name="_ProductItemCard" model="item" />
-                                        }
-                                    }
-                                    else
-                                    {
-                                        foreach (var item in Model)
-                                        {
-                                            <partial name="_ProductItemCard" model="item" />
-                                        }
-                                    }
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @foreach (var item in Model)
+                {
+                    <partial name="_ProductItemCard" model="item" />
+                }
             </div>
 
 
-            <!-- Sidebar -->
-            <div class="col-lg-2">
+            <!-- Pagination -->
+            @if (ViewBag.PageCount > 1)
+            {
+                <div class="d-flex justify-content-center mt-5">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination">
+                            <!-- Previous -->
+                            <li class="page-item @(ViewBag.PageId <= 1 ? "disabled" : "")">
+                                <a class="page-link"
+                                   href="/Group/-1/All-Products?pageid=@(ViewBag.PageId - 1)">
+                                    &laquo;
+                                </a>
+                            </li>
 
-                <div class="sidebar-box mb-4">
-                    <h6 class="mb-3" style="color:#81C408">
-                        Product Categories
-                    </h6>
 
-                    @await Component.InvokeAsync("ProductGroup")
+                            <!-- Pages -->
+                            @for (int i = 1; i <= ViewBag.PageCount; i++)
+                            {
+                                <li class="page-item @(ViewBag.PageId == i ? "active" : "")">
+                                    <a class="page-link" href="/Group/-1/All-Products?pageid=@i">@i </a>
+                                </li>
+                            }
+
+
+                            <!-- Next -->
+                            <li class="page-item @(ViewBag.PageId >= ViewBag.PageCount ? "disabled" : "")">
+                                <a class="page-link"
+                                   href="/Group/-1/All-Products?pageid=@(ViewBag.PageId + 1)">
+                                    &raquo;
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
+            }
+        </div>
 
-                <!-- Cart -->
-                @await Component.InvokeAsync("ShopCart")
 
+        <!-- Sidebar -->
+        <div class="col-lg-2">
+
+            <div class="sidebar-box mb-4">
+
+                <h6 class="mb-3" style="color:#81C408">
+                    Product Categories
+                </h6>
+
+                @await Component.InvokeAsync("ProductGroup")
             </div>
+            @await Component.InvokeAsync("ShopCart")
 
         </div>
-  
+
+    </div>
+
 </div>
-
-
-

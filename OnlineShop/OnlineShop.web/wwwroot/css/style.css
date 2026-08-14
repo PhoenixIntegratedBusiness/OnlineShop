@@ -692,3 +692,11 @@
 .product-card-tags {
     gap: 4px;
 }
+/*----------------------------------*/
+.pagination {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}

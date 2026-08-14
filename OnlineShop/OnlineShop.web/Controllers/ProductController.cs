@@ -29,20 +29,41 @@ namespace OnlineShop.web.Controllers
         }
         #endregion
 
+
+
         #region ShowProductbyGroup
         [Route("Group/{id}/{title}")]
-        public async Task<IActionResult> ShowProductbyGroup(int id, string title)
+        public async Task<IActionResult> ShowProductbyGroup(int id,string title,int pageid = 1)
         {
+            int take = 6;
+            int skip = (pageid - 1) * take;
+
             var group = await _productGroupService.GetProductGroupsAsync();
             ViewData["GroupId"] = group.Where(u => u.isDelete == false);
+
+            // All Products
             if (id == -1)
             {
-                ViewData["Productlist"] = await _productService.GetAllProductCardItemAsync();
+                var products = await _productService.GetAllProductCardItemAsync();
+                int pageCount = (int)Math.Ceiling(products.Count() / (double)take);
+
+                ViewBag.PageCount = pageCount;
+                ViewBag.PageId = pageid;
+
+                var productList = products.Skip(skip).Take(take).ToList();
+                return View(productList);
             }
+
+            // Products by Group
             var res = await _productService.GetProductsByGruoupIdAsync(id);
+
             return View(res);
         }
+
         #endregion
+
+
+
 
         #region ProductDetails
         [Route("ProductDetails/{id}")]
