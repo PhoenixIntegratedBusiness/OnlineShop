@@ -43,11 +43,11 @@
 <!-- Hero End -->
 
 
-<div class="container  py-5">
+<div class="container-fluid" style="padding-left:5%; padding-right:5%;">
     <div class="tab-class">
         <div class="row g-4">
 
-            <div class="col-lg-8 text-end">
+            <div class="col-md-8 text-end">
                 <ul class="nav nav-pills d-inline-flex text-center mb-5">
                     <li class="nav-item">
                         <a class="d-flex m-2 py-2 bg-light rounded-pill" href="/home">
@@ -64,14 +64,14 @@
                     }
                 </ul>
             </div>
-            <div class="col-lg-4 text-start">
+            <div class="col-md-4 text-start">
                 <h3> Latest Organic Products</h3>
             </div>
 
         </div>
         <div class="row">
             <div class="col-md-10">
-                <div class="tab-content col-lg-12">
+                <div class="tab-content">
 
                     <div id="tab-1" class="tab-pane fade show p-0 active">
                         <div class="row g-4">
@@ -95,7 +95,8 @@
                 </div>
 
                 <!-- Cart -->
-                <partial name="_GroupCardSideBar"/>
+                @await Component.InvokeAsync("ShopCart")
+                @* <partial name="_GroupCardSideBar"/> *@
             </div>
         </div>
     </div>

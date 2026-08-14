@@ -1,5 +1,6 @@
 ﻿using Application.Services.Implementation;
 using Application.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace OnlineShop.web.Controllers
@@ -48,5 +49,7 @@ namespace OnlineShop.web.Controllers
             return View(await _productService.GetProductByIdAsync(id));
         }
         #endregion
+
+      
     }
 }

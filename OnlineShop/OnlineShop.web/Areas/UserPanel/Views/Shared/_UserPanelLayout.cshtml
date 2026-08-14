@@ -48,27 +48,40 @@
                     Interface
                 </div>
             </li>
-
+         
             <li class="nav-item">
-                <a class="nav-link" asp-action="UserList" asp-area="UserPanel" asp-controller="User">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>User List</span>
+                <a class="nav-link" asp-action="ChangePassword" asp-controller="User">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>change Password</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" asp-action="ShowShopCart" asp-area="UserPanel" asp-controller="UserProduct">
+                    <i class="fa fa-shopping-bag fa-2x"></i>
+                    <span>Shop Card/Basket</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"href="/home" >
+                    <i class="fas fa-fw fa-home"></i>
+                    <span>Main Page</span>
+                </a>
+            </li>
+
             <!-- Divider -->
-            <li> <hr class="sidebar-divider"></li>
+            @* <li> <hr class="sidebar-divider"></li> *@
 
 
-            <!-- Heading -->
+         @*    <!-- Heading -->
             <li>
                 <div class="sidebar-heading">
                     Addons
                 </div>
-            </li>
+            </li> *@
 
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+      @*       <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                    aria-expanded="true" aria-controls="collapsePages">
                     <i class="fas fa-fw fa-folder"></i>
@@ -86,21 +99,11 @@
                         <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
                 </div>
-            </li>
+            </li> *@
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" asp-action="ChangePassword" asp-controller="User">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>change Password</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tables</span>
-                </a>
-            </li>
+        
+        
 
             <!-- Divider -->
             <li><hr class="sidebar-divider d-none d-md-block"></li>
