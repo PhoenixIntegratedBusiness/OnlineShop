@@ -5,32 +5,41 @@
 An e-commerce project built with ASP.NET Core MVC and Clean Architecture.
 
 ## Technologies
-
-- ASP.NET Core 8 MVC
-- Entity Framework Core 8
-- SQL Server
-- C#
-- Razor Views
-- Bootstrap
-- Dependency Injection
-- Repository Pattern
-- Clean Architecture
-- Cookie Authentication
-- Role-Based Authorization
+ASP.NET Core 8 MVC
+C#
+Entity Framework Core
+SQL Server
+Clean Architecture
+Repository Pattern
+Service Layer
+AutoMapper
+ASP.NET Core Identity PasswordHasher
+Bootstrap
+JavaScript / jQuery
+HTML / CSS
+Git & GitHub
 
 ## Features
 
-- User registration
-- User login/logout
-- Password hashing
-- Remember Me authentication
-- Profile management
-- User Management
-- Admin Panel
-- CRUD Operations
+User registration and login
+Password hashing
+User management
+Role management
+Admin area
+Product group management
+Product management
+Product image and gallery management
+Product filtering by group
+Product details
+Shopping cart
+Add/remove products from cart
+Product pagination
+AutoMapper integration
+Repository and Service patterns
+Clean Architecture structure
+Responsive UI with Bootstrap
 
 ## Architecture
-
 Web Layer
 Application Layer
 Domain Layer
@@ -43,11 +52,13 @@ Software Engineer | .NET Developer
 
 
 ## Future Improvements
-
-- Permission-Based Authorization
 - Web API
 - JWT Authentication
-- Shopping Cart
-- Order Management
-- Payment Gateway
 - Unit Testing
+
+
+## Project Status
+In Development
+The project will continue to evolve as new backend and API features are added.
+
+
