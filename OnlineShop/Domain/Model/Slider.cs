@@ -12,18 +12,15 @@ namespace Domain.Model
         [Key]
         public int SliderId { get; set; }
 
-        [Display(Name = "عنوان ")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
         public string Title { get; set; }
 
-        [Display(Name = "تصویر ")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public string ImageName { get; set; }
-        [Display(Name = "شروع ")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public DateOnly StartDate { get; set; }
-        [Display(Name = " پایان")]
-        [Required(ErrorMessage = "لطفا {0} را وارد کنید")]
-        public DateOnly EndDate { get; set; }
+      
+        public string? ImageName { get; set; }
+
+        [DataType(DataType.DateTime)]
+        public DateOnly? StartDate { get; set; }
+
+        [DataType(DataType.DateTime)]
+        public DateOnly? EndDate { get; set; }
     }
 }

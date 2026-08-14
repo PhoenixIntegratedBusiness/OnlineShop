@@ -1,0 +1,86 @@
+﻿@using Domain.Model
+@model Order
+
+@{
+    ViewData["Title"] = "ShowShopCart";
+    int counter = 1;
+}
+
+<div class="container-Fluid" style="margin:5%;font-weight:bold">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    #
+                </th>
+                <th>
+                    Product Name
+                </th>
+                <th>
+                    QTY
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Total
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetails)
+            {
+                <tr id="Pro_@(item.ProductId)">
+                    <td>
+                        @counter
+                    </td>
+                    <td>
+                        @item.Product.Title
+                    </td>
+                    <td>
+                        @item.Count
+                    </td>
+                    <td>
+                        @item.Product.Price
+                    </td>
+                    <td>
+                        @(item.Count* item.Product.Price)
+                    </td>
+                    <td>
+                        <button onclick="deleteItem(@item.ProductId)" class="btn btn-danger btn-block">Delete</button>
+                        @* <a onclick="deleteItem(@item.ProductId)">Delete</a>*@  
+                    </td>
+                </tr>
+                counter++;
+            }
+            <tr>
+                <td colspan="2">Sum Count :</td>
+                <td>@Model.OrderDetails.Sum(d => d.Count)</td>
+                <td>Total Amount :</td>
+                <td colspan="2">
+                    @Model.OrderDetails.Sum(d => d.Count * d.Product.Price)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+                <td colspan="3">
+                    <a class="btn btn-success btn-block">Payment</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    function deleteItem(id) {
+             alert("ID = " + id);
+
+             $.get("/UserPanel/UserProduct/DeleteFromCart/" + id)
+                 .done(function () {
+                     $("#Pro_" + id).hide(1000);
+                 })
+                 .fail(function (xhr) {
+                     console.log(xhr.status);
+                 });
+         }
+</script>

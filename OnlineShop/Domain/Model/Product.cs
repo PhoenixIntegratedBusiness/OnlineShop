@@ -33,6 +33,9 @@ namespace Domain.Model
         public string? Description { get; set; }
         public List<ProductGallery> ProductGallery { get; set; }= new List<ProductGallery>();
         public List<Tags> Tags { get; set; }= new List<Tags>();
+
+        public List<OrderDetail>? OrderDetails { get; set; }
+
         
 
     }

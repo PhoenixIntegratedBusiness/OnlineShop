@@ -11,7 +11,7 @@ using OnlineShop.web.Web.Extentions;
 namespace OnlineShop.web.Areas.UserPanel.Controllers
 {
     [Area("UserPanel")]
-    [Authorize(Roles = "Admin,User,Secretary")]
+    [Authorize(Roles = "Admin,User")]
     public class UserController : Controller
     {
         private readonly IUserService _userService;
@@ -80,5 +80,9 @@ namespace OnlineShop.web.Areas.UserPanel.Controllers
                 return View(model);
             }
         }
+   
+    
+   
+    
     }
 }

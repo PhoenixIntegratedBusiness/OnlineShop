@@ -20,6 +20,8 @@ namespace Infra.Data.Context
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserInRole> userInRoles { get; set; }
         public DbSet<Tags> Tags {  get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

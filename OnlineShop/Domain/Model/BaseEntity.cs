@@ -14,6 +14,6 @@ namespace Domain.Model
         [Display(Name = "تاریخ ایجاد")]
         public DateTime CreateDate { get; set; } = DateTime.Now;
         [Display(Name = "حذف شده ؟")]
-        public bool isDelete { get; set; } = false;
+        public bool isDelete { get; set; } = false; 
     }
 }

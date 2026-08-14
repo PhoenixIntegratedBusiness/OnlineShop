@@ -13,7 +13,43 @@
                 <div class="tab-content col-lg-12">
 
                     <div>
-                        <h4>@Model.Title Details</h4>
+                        <div class="row">
+                            <div>
+                                <h4>@Model.Title Details</h4>
+                            </div>
+                            <div >
+                                <div class="cart-area" data-product-id="@Model.ProductId">
+
+                                    <!-- Add Cart -->
+                                    <button type="button"
+                                            class="btn btn-sm border border-secondary rounded-pill px-5 text-primary add-to-cart">
+                                        <i class="fa fa-shopping-bag me-1"></i>
+                                        Add Cart
+                                    </button>
+
+                                    <!-- Quantity -->
+                                    <div class="quantity-box d-none align-items-center gap-2">
+
+                                        <button type="button"
+                                                class="btn btn-sm border border-secondary rounded-pill text-primary decrease">
+                                            <i class="fa fa-minus"></i>
+                                        </button>
+
+                                        <span class="quantity fw-bold text-dark px-1">1</span>
+
+                                        <button type="button"
+                                                class="btn btn-sm border border-secondary rounded-pill text-primary increase">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                      
                         <hr />
                         <dl class="row">
 
@@ -60,6 +96,23 @@
                 </div>
             </div>
 
+       @*      <div class="col-md-4 col-sm-12 col-xs-12 pull-right product-gallery">
+                <div class="large-image border-radius">
+                    <img class="border-radius" src="/Images/@Model.ProductImages.FirstOrDefault()?.ImageName">
+                </div>
+                <div class="thumbnails-image">
+                    <div class="row">
+                        @foreach (var item in Model.ProductImages)
+                        {
+                            <div class="col-md-3 col-sm-3 col-xs-4 border-radius"><img class="border-radius" src="/Images/@item.ImageName"></div>
+
+                        }
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div> *@
+
+
             <div class="col-md-2">
                 <div class="sidebar-box mb-4">
                     <h6 class="mb-3" style="color:#81C408">Product Categories</h6>
@@ -67,7 +120,7 @@
                 </div>
 
                 <!-- Cart -->
-                <partial name="_GroupCardSideBar" />
+                @await Component.InvokeAsync("ShopCart")
             </div>
         </div>
     </div>

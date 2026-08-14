@@ -3,7 +3,7 @@
 
 <div class="container  py-5" style="margin-top:5%">
     <div class="row g-4">
-        <div class="col-lg-10">
+        <div class="col-lg-9">
             <div class="tab-content col-lg-12">
 
                 <div id="tab-1" class="tab-pane fade show p-0 active">
@@ -35,14 +35,15 @@
             </div>
         </div>
 
-        <div class="col-md-2">
-            <div class="sidebar-box mb-4">
+        <div class="col-md-3" style="width:100%">
+            <div class="sidebar-box mb-4 ">
                 <h6 class="mb-3" style="color:#81C408">Product Categories</h6>
                 @await Component.InvokeAsync("ProductGroup")
             </div>
 
             <!-- Cart -->
-            <partial name="_GroupCardSideBar" />
+            @await Component.InvokeAsync("ShopCart")
+            @* <partial name="_GroupCardSideBar" /> *@
         </div>
     </div>
 </div>

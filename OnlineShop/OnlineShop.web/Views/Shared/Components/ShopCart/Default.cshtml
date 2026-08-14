@@ -1,0 +1,33 @@
+﻿@using Domain.Model
+@model Order
+
+
+<div class="sidebar-box">
+    <h6 class="mb-3" style="color:#81C408">Shopping Cart</h6>
+
+    @foreach (var item in Model.OrderDetails ?? new List<OrderDetail>()){
+        <div class="cart-item d-flex align-items-center mb-3">
+            <img src="/Images/Product/ProductImg/@item.Product.ImageName" class="rounded" width="55" height="55">
+
+            <div class="ms-2">
+                <h6 class="mb-1">@item.Product.Title</h6>
+                <small>count:@item.Count * </small>
+                <small>Price:@item.Product.Price</small>
+
+            </div>
+        </div>
+
+        <hr>
+
+        @* <div class="d-flex justify-content-between">
+            <strong>Total:</strong>
+            <strong>$4.99</strong>
+        </div> *@
+    }
+
+
+    <a href="/ShowShopCart"
+       class="btn btn-primary rounded-pill w-100 mt-3">
+        View Cart
+    </a>
+</div>

@@ -24,6 +24,7 @@ namespace Infra.IOC
             services.AddScoped<IEmailSender, EmailSender>();
             services.AddScoped<IProductGroupService, ProductGroupService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IOrderService, OrderService>();
             services.AddScoped<IPasswordHasher<Users>, PasswordHasher<Users>>();
             #endregion
 
@@ -32,6 +33,7 @@ namespace Infra.IOC
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProductGroupRepository, ProductGroupRepository>();
             services.AddScoped<IProductRepository,ProductRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             #endregion
 

@@ -518,3 +518,28 @@
     .fruite .fruite-item .product-summary {
         flex-grow: 1;
     }
+    /*----------------------------------*/
+
+.product-gallery {
+    padding-right: 0
+}
+
+.large-image {
+    padding: 1px;
+    border: 1px solid #dfdfdf;
+    margin-bottom: 15px
+}
+
+    .large-image img {
+        display: block;
+        width: 100%;
+        max-width: 100%
+    }
+
+.thumbnails-image .row > div img {
+    border: 1px solid #dfdfdf;
+    padding: 1px;
+    display: block;
+    width: 100%;
+    max-width: 100%
+}
